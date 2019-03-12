@@ -160,13 +160,13 @@ class HTML_QuickForm_static extends HTML_QuickForm_element {
      *
      * @param     string    $event  Name of event
      * @param     mixed     $arg    event arguments
-     * @param     object    &$caller calling object
+     * @param     object    $caller calling object
      * @since     1.0
      * @access    public
      * @return    void
      * @throws    
      */
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'updateValue':
@@ -191,7 +191,7 @@ class HTML_QuickForm_static extends HTML_QuickForm_element {
    /**
     * We override this here because we don't want any values from static elements
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         return null;
     }

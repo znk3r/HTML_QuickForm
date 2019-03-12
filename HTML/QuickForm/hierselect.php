@@ -134,12 +134,12 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      *
      * // If only need two selects
      * //     - and using the deprecated functions
-     * $sel =& $form->addElement('hierselect', 'cds', 'Choose CD:');
+     * $sel = $form->addElement('hierselect', 'cds', 'Choose CD:');
      * $sel->setMainOptions($select1);
      * $sel->setSecOptions($select2);
      *
      * //     - and using the new setOptions function
-     * $sel =& $form->addElement('hierselect', 'cds', 'Choose CD:');
+     * $sel = $form->addElement('hierselect', 'cds', 'Choose CD:');
      * $sel->setOptions(array($select1, $select2));
      *
      * // If you have a third select with prices for the cds
@@ -148,7 +148,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * // etc
      *
      * // You can now use
-     * $sel =& $form->addElement('hierselect', 'cds', 'Choose CD:');
+     * $sel = $form->addElement('hierselect', 'cds', 'Choose CD:');
      * $sel->setOptions(array($select1, $select2, $select3));
      * </code>
      *
@@ -168,7 +168,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
             // check if all elements have been created
             $totalNbElements = count($this->_options);
             for ($i = $this->_nbElements; $i < $totalNbElements; $i ++) {
-                $this->_elements[] =& new HTML_QuickForm_select($i, null, array(), $this->getAttributes());
+                $this->_elements[] = new HTML_QuickForm_select($i, null, array(), $this->getAttributes());
                 $this->_nbElements++;
             }
         }
@@ -223,7 +223,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
             // check if all elements have been created
             $totalNbElements = 2;
             for ($i = $this->_nbElements; $i < $totalNbElements; $i ++) {
-                $this->_elements[] =& new HTML_QuickForm_select($i, null, array(), $this->getAttributes());
+                $this->_elements[] = new HTML_QuickForm_select($i, null, array(), $this->getAttributes());
                 $this->_nbElements++;
             }
         }
@@ -248,7 +248,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
                 if ((empty($arrayKeys)) || HTML_QuickForm_utils::recursiveIsset($this->_options[$key], $arrayKeys)) {
                     $array = empty($arrayKeys) ? $this->_options[$key] : HTML_QuickForm_utils::recursiveValue($this->_options[$key], $arrayKeys);
                     if (is_array($array)) {
-                        $select =& $this->_elements[$key];
+                        $select = $this->_elements[$key];
                         $select->_options = array();
                         $select->loadArray($array);
 
@@ -294,7 +294,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
     function _createElements()
     {
         for ($i = 0; $i < $this->_nbElements; $i++) {
-            $this->_elements[] =& new HTML_QuickForm_select($i, null, array(), $this->getAttributes());
+            $this->_elements[] = new HTML_QuickForm_select($i, null, array(), $this->getAttributes());
         }
     } // end func _createElements
 
@@ -309,7 +309,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
             $keys     = array_keys($this->_elements);
             $onChange = array();
             for ($i = 0; $i < count($keys) - 1; $i++) {
-                $select =& $this->_elements[$keys[$i]];
+                $select = $this->_elements[$keys[$i]];
                 $onChange[$i] = $select->getAttribute('onchange');
                 $select->updateAttributes(
                     array('onchange' => '_hs_swapOptions(this.form, \'' . $this->_escapeString($this->getName()) . '\', ' . $keys[$i] . ');' . $onChange[$i])
@@ -472,7 +472,7 @@ JAVASCRIPT;
                           $this->_convertArrayToJavascript($values) . ";\n";
         }
         include_once('HTML/QuickForm/Renderer/Default.php');
-        $renderer =& new HTML_QuickForm_Renderer_Default();
+        $renderer = new HTML_QuickForm_Renderer_Default();
         $renderer->setElementTemplate('{element}');
         parent::accept($renderer);
 
@@ -489,7 +489,7 @@ JAVASCRIPT;
     // }}}
     // {{{ accept()
 
-    function accept(&$renderer, $required = false, $error = null)
+    function accept($renderer, $required = false, $error = null)
     {
         $renderer->renderElement($this, $required, $error);
     } // end func accept
@@ -497,7 +497,7 @@ JAVASCRIPT;
     // }}}
     // {{{ onQuickFormEvent()
 
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         if ('updateValue' == $event) {
             // we need to call setValue() so that the secondary option

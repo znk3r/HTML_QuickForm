@@ -112,10 +112,10 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     *
     * @param HTML_Template_IT|HTML_Template_Sigma   Template object to use
     */
-    function HTML_QuickForm_Renderer_ITStatic(&$tpl)
+    function HTML_QuickForm_Renderer_ITStatic($tpl)
     {
         $this->HTML_QuickForm_Renderer();
-        $this->_tpl =& $tpl;
+        $this->_tpl = $tpl;
     } // end constructor
 
    /**
@@ -125,7 +125,7 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function startForm(&$form)
+    function startForm($form)
     {
         $this->_formName = $form->getAttribute('id');
 
@@ -144,7 +144,7 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function finishForm(&$form)
+    function finishForm($form)
     {
         // display errors above form
         if (!empty($this->_errors) && $this->_tpl->blockExists($this->_formName.'_error_loop')) {
@@ -174,7 +174,7 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function renderHeader(&$header)
+    function renderHeader($header)
     {
         $name = $header->getName();
         $varName = $this->_formName.'_header';
@@ -195,7 +195,7 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function renderElement(&$element, $required, $error)
+    function renderElement($element, $required, $error)
     {
         $name = $element->getName();
 
@@ -269,7 +269,7 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function renderHidden(&$element)
+    function renderHidden($element)
     {
         if ($this->_tpl->placeholderExists($this->_formName . '_hidden')) {
             $this->_hidden .= $element->toHtml();
@@ -289,7 +289,7 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function startGroup(&$group, $required, $error)
+    function startGroup($group, $required, $error)
     {
         $name = $group->getName();
         $varName = $this->_formName.'_'.$name;
@@ -340,7 +340,7 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function finishGroup(&$group)
+    function finishGroup($group)
     {
         $this->_inGroup = '';
     } // end func finishGroup

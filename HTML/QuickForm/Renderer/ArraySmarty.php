@@ -136,10 +136,10 @@ class HTML_QuickForm_Renderer_ArraySmarty extends HTML_QuickForm_Renderer_Array
     * @param  bool    true: collect all hidden elements into string; false: process them as usual form elements
     * @access public
     */
-    function HTML_QuickForm_Renderer_ArraySmarty(&$tpl, $staticLabels = false, $collectHidden = true)
+    function HTML_QuickForm_Renderer_ArraySmarty($tpl, $staticLabels = false, $collectHidden = true)
     {
         $this->HTML_QuickForm_Renderer_Array($collectHidden, $staticLabels);
-        $this->_tpl =& $tpl;
+        $this->_tpl = $tpl;
     } // end constructor
 
    /**
@@ -149,7 +149,7 @@ class HTML_QuickForm_Renderer_ArraySmarty extends HTML_QuickForm_Renderer_Array
     * @access   public
     * @return   void
     */
-    function renderHeader(&$header)
+    function renderHeader($header)
     {
         if ($name = $header->getName()) {
             $this->_ary['header'][$name] = $header->toHtml();
@@ -168,7 +168,7 @@ class HTML_QuickForm_Renderer_ArraySmarty extends HTML_QuickForm_Renderer_Array
     * @access   public
     * @return   void
     */
-    function startGroup(&$group, $required, $error)
+    function startGroup($group, $required, $error)
     {
         parent::startGroup($group, $required, $error);
         $this->_groupElementIdx = 1;
@@ -184,7 +184,7 @@ class HTML_QuickForm_Renderer_ArraySmarty extends HTML_QuickForm_Renderer_Array
     * @param  string                    Error associated with the element
     * @return array
     */
-    function _elementToArray(&$element, $required, $error)
+    function _elementToArray($element, $required, $error)
     {
         $ret = parent::_elementToArray($element, $required, $error);
 

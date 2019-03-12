@@ -188,7 +188,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     }
 
 
-    function startForm(&$form)
+    function startForm($form)
     {
         $this->_ary = array(
             'frozen'            => $form->isFrozen(),
@@ -206,7 +206,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func startForm
 
 
-    function renderHeader(&$header)
+    function renderHeader($header)
     {
         $this->_ary['sections'][$this->_sectionCount] = array(
             'header' => $header->toHtml(),
@@ -216,7 +216,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func renderHeader
 
 
-    function renderElement(&$element, $required, $error)
+    function renderElement($element, $required, $error)
     {
         $elAry = $this->_elementToArray($element, $required, $error);
         if (!empty($error)) {
@@ -226,7 +226,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func renderElement
 
 
-    function renderHidden(&$element)
+    function renderHidden($element)
     {
         if ($this->_collectHidden) {
             $this->_ary['hidden'] .= $element->toHtml() . "\n";
@@ -236,7 +236,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func renderHidden
 
 
-    function startGroup(&$group, $required, $error)
+    function startGroup($group, $required, $error)
     {
         $this->_currentGroup = $this->_elementToArray($group, $required, $error);
         if (!empty($error)) {
@@ -245,7 +245,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func startGroup
 
 
-    function finishGroup(&$group)
+    function finishGroup($group)
     {
         $this->_storeArray($this->_currentGroup);
         $this->_currentGroup = null;
@@ -261,7 +261,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     * @param  string                    Error associated with the element
     * @return array
     */
-    function _elementToArray(&$element, $required, $error)
+    function _elementToArray($element, $required, $error)
     {
         $ret = array(
             'name'      => $element->getName(),

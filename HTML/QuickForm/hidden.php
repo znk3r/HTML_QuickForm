@@ -85,7 +85,7 @@ class HTML_QuickForm_hidden extends HTML_QuickForm_input
     * @access public
     * @return void 
     */
-    function accept(&$renderer, $sc1 = false, $sc2 = null)
+    function accept($renderer, $sc1 = false, $sc2 = null)
     {
         $renderer->renderHidden($this);
     } // end func accept

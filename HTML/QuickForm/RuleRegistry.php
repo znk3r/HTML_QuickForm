@@ -54,7 +54,7 @@ class HTML_QuickForm_RuleRegistry
      * @static
      * @return    HTML_QuickForm_RuleRegistry
      */
-    function &singleton()
+    function singleton()
     {
         static $obj;
         if (!isset($obj)) {
@@ -89,13 +89,13 @@ class HTML_QuickForm_RuleRegistry
         $type = strtolower($type);
         if ($type == 'regex') {
             // Regular expression
-            $rule =& $this->getRule('regex');
+            $rule = $this->getRule('regex');
             $rule->addData($ruleName, $data1);
             $GLOBALS['_HTML_QuickForm_registered_rules'][$ruleName] = $GLOBALS['_HTML_QuickForm_registered_rules']['regex'];
 
         } elseif ($type == 'function' || $type == 'callback') {
             // Callback function
-            $rule =& $this->getRule('callback');
+            $rule = $this->getRule('callback');
             $rule->addData($ruleName, $data1, $data2, 'function' == $type);
             $GLOBALS['_HTML_QuickForm_registered_rules'][$ruleName] = $GLOBALS['_HTML_QuickForm_registered_rules']['callback'];
 
@@ -117,7 +117,7 @@ class HTML_QuickForm_RuleRegistry
      * @access    public
      * @return    HTML_QuickForm_Rule
      */
-    function &getRule($ruleName)
+    function getRule($ruleName)
     {
         list($class, $path) = $GLOBALS['_HTML_QuickForm_registered_rules'][$ruleName];
 
@@ -125,7 +125,7 @@ class HTML_QuickForm_RuleRegistry
             if (!empty($path)) {
                 include_once($path);
             }
-            $this->_rules[$class] =& new $class();
+            $this->_rules[$class] = new $class();
         }
         $this->_rules[$class]->setName($ruleName);
         return $this->_rules[$class];
@@ -144,7 +144,7 @@ class HTML_QuickForm_RuleRegistry
      */
     function validate($ruleName, $values, $options = null, $multiple = false)
     {
-        $rule =& $this->getRule($ruleName);
+        $rule = $this->getRule($ruleName);
 
         if (is_array($values) && !$multiple) {
             $result = 0;
@@ -169,10 +169,10 @@ class HTML_QuickForm_RuleRegistry
      * @access    public
      * @return    string    JavaScript for the rule
      */
-    function getValidationScript(&$element, $elementName, $ruleData)
+    function getValidationScript($element, $elementName, $ruleData)
     {
         $reset =  (isset($ruleData['reset'])) ? $ruleData['reset'] : false;
-        $rule  =& $this->getRule($ruleData['type']);
+        $rule  = $this->getRule($ruleData['type']);
         if (!is_array($element)) {
             list($jsValue, $jsReset) = $this->_getJsValue($element, $elementName, $reset, null);
         } else {
@@ -223,13 +223,13 @@ class HTML_QuickForm_RuleRegistry
     *                                   multielement rules)
     * @return array     first item is value javascript, second is reset
     */
-    function _getJsValue(&$element, $elementName, $reset = false, $index = null)
+    function _getJsValue($element, $elementName, $reset = false, $index = null)
     {
         $jsIndex = isset($index)? '[' . $index . ']': '';
         $tmp_reset = $reset? "    var field = frm.elements['$elementName'];\n": '';
         if (is_a($element, 'html_quickform_group')) {
             $value = "  _qfGroups['{$elementName}'] = {";
-            $elements =& $element->getElements();
+            $elements = $element->getElements();
             for ($i = 0, $count = count($elements); $i < $count; $i++) {
                 $append = ($elements[$i]->getType() == 'select' && $elements[$i]->getMultiple())? '[]': '';
                 $value .= "'" . $element->getElementName($i) . $append . "': true" .

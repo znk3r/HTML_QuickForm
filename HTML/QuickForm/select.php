@@ -364,7 +364,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @return    PEAR_Error on error or true
      * @throws    PEAR_Error
      */
-    function loadDbResult(&$result, $textCol=null, $valueCol=null, $values=null)
+    function loadDbResult($result, $textCol=null, $valueCol=null, $values=null)
     {
         if (!is_object($result) || !is_a($result, 'db_result')) {
             return PEAR::raiseError('Argument 1 of HTML_Select::loadDbResult is not a valid DB_result');
@@ -399,16 +399,16 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @return    void
      * @throws    PEAR_Error
      */
-    function loadQuery(&$conn, $sql, $textCol=null, $valueCol=null, $values=null)
+    function loadQuery($conn, $sql, $textCol=null, $valueCol=null, $values=null)
     {
         if (is_string($conn)) {
             require_once('DB.php');
-            $dbConn = &DB::connect($conn, true);
+            $dbConn = DB::connect($conn, true);
             if (DB::isError($dbConn)) {
                 return $dbConn;
             }
         } elseif (is_subclass_of($conn, "db_common")) {
-            $dbConn = &$conn;
+            $dbConn = $conn;
         } else {
             return PEAR::raiseError('Argument 1 of HTML_Select::loadQuery is not a valid type');
         }
@@ -446,7 +446,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @return    PEAR_Error on error or true
      * @throws    PEAR_Error
      */
-    function load(&$options, $param1=null, $param2=null, $param3=null, $param4=null)
+    function load($options, $param1=null, $param2=null, $param3=null, $param4=null)
     {
         switch (true) {
             case is_array($options):
@@ -557,7 +557,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
     * We check the options and return only the values that _could_ have been
     * selected. We also return a scalar value if select is not "multiple"
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         $value = $this->_findValue($submitValues);
         if (is_null($value)) {
@@ -588,7 +588,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
     // }}}
     // {{{ onQuickFormEvent()
 
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         if ('updateValue' == $event) {
             $value = $this->_findValue($caller->_constantValues);

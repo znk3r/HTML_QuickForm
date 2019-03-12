@@ -163,13 +163,13 @@ class HTML_QuickForm_input extends HTML_QuickForm_element
      *
      * @param     string    $event  Name of event
      * @param     mixed     $arg    event arguments
-     * @param     object    &$caller calling object
+     * @param     object    $caller calling object
      * @since     1.0
      * @access    public
      * @return    void
      * @throws    
      */
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         // do not use submit values for button-type elements
         $type = $this->getType();
@@ -194,7 +194,7 @@ class HTML_QuickForm_input extends HTML_QuickForm_element
    /**
     * We don't need values from button-type elements (except submit) and files
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         $type = $this->getType();
         if ('reset' == $type || 'image' == $type || 'button' == $type || 'file' == $type) {

@@ -65,7 +65,7 @@ class HTML_QuickForm_header extends HTML_QuickForm_static
     * @access public
     * @return void 
     */
-    function accept(&$renderer, $sc1 = false, $sc2 = null)
+    function accept($renderer, $sc1 = false, $sc2 = null)
     {
         $renderer->renderHeader($this);
     } // end func accept

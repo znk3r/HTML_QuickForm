@@ -112,7 +112,7 @@ class HTML_QuickForm_hiddenselect extends HTML_QuickForm_select
     * @param bool $sc1                  unused, for signature compatibility
     * @param bool $sc2                  unused, for signature compatibility
     */
-    function accept(&$renderer, $sc1 = false, $sc2 = null)
+    function accept($renderer, $sc1 = false, $sc2 = null)
     {
         $renderer->renderHidden($this);
     }

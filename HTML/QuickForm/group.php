@@ -196,7 +196,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
     {
         $value = null;
         foreach (array_keys($this->_elements) as $key) {
-            $element =& $this->_elements[$key];
+            $element = $this->_elements[$key];
             switch ($element->getType()) {
                 case 'radio': 
                     $v = $element->getChecked()? $element->getValue(): null;
@@ -255,7 +255,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @access    public
      * @return    array
      */
-    function &getElements()
+    function getElements()
     {
         $this->_createElementsIfNotExist();
         return $this->_elements;
@@ -299,7 +299,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
     function toHtml()
     {
         include_once('HTML/QuickForm/Renderer/Default.php');
-        $renderer =& new HTML_QuickForm_Renderer_Default();
+        $renderer = new HTML_QuickForm_Renderer_Default();
         $renderer->setElementTemplate('{element}');
         $this->accept($renderer);
         return $renderer->toHtml();
@@ -385,12 +385,12 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      *
      * @param     string    $event  Name of event
      * @param     mixed     $arg    event arguments
-     * @param     object    &$caller calling object
+     * @param     object    $caller calling object
      * @since     1.0
      * @access    public
      * @return    void
      */
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'updateValue':
@@ -431,13 +431,13 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
     * @access public
     * @return void 
     */
-    function accept(&$renderer, $required = false, $error = null)
+    function accept($renderer, $required = false, $error = null)
     {
         $this->_createElementsIfNotExist();
         $renderer->startGroup($this, $required, $error);
         $name = $this->getName();
         foreach (array_keys($this->_elements) as $key) {
-            $element =& $this->_elements[$key];
+            $element = $this->_elements[$key];
             
             if ($this->_appendName) {
                 $elementName = $element->getName();
@@ -467,7 +467,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
     * As usual, to get the group's value we access its elements and call
     * their exportValue() methods
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         $value = null;
         foreach (array_keys($this->_elements) as $key) {

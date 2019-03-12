@@ -339,7 +339,7 @@ class HTML_QuickForm_element extends HTML_Common
      * @access    private
      * @return    mixed
      */
-    function _findValue(&$values)
+    function _findValue($values)
     {
         if (empty($values)) {
             return null;
@@ -369,12 +369,12 @@ class HTML_QuickForm_element extends HTML_Common
      *
      * @param     string    $event  Name of event
      * @param     mixed     $arg    event arguments
-     * @param     object    &$caller calling object
+     * @param     object    $caller calling object
      * @since     1.0
      * @access    public
      * @return    void
      */
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'createElement':
@@ -417,7 +417,7 @@ class HTML_QuickForm_element extends HTML_Common
     * @access public
     * @return void
     */
-    function accept(&$renderer, $required=false, $error=null)
+    function accept($renderer, $required=false, $error=null)
     {
         $renderer->renderElement($this, $required, $error);
     } // end func accept
@@ -454,7 +454,7 @@ class HTML_QuickForm_element extends HTML_Common
     * @access public
     * @return mixed
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         $value = $this->_findValue($submitValues);
         if (null === $value) {

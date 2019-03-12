@@ -236,12 +236,12 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
      *
      * @param     string    $event  Name of event
      * @param     mixed     $arg    event arguments
-     * @param     object    &$caller calling object
+     * @param     object    $caller calling object
      * @since     1.0
      * @access    public
      * @return    void
      */
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'updateValue':

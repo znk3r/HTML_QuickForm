@@ -177,7 +177,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function startForm(&$form)
+    function startForm($form)
     {
         $this->_html = '';
         $this->_hiddenHtml = '';
@@ -191,7 +191,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function finishForm(&$form)
+    function finishForm($form)
     {
         // add a required note, if one is needed
         if (!empty($form->_required) && !$form->_freezeAll) {
@@ -219,7 +219,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function renderHeader(&$header)
+    function renderHeader($header)
     {
         $name = $header->getName();
         if (!empty($name) && isset($this->_templates[$name])) {
@@ -289,7 +289,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @access public
     * @return void
     */
-    function renderElement(&$element, $required, $error)
+    function renderElement($element, $required, $error)
     {
         if (!$this->_inGroup) {
             $html = $this->_prepareTemplate($element->getName(), $element->getLabel(), $required, $error);
@@ -318,7 +318,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @access public
     * @return void
     */
-    function renderHidden(&$element)
+    function renderHidden($element)
     {
         $this->_hiddenHtml .= $element->toHtml() . "\n";
     } // end func renderHidden
@@ -330,7 +330,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @access public
     * @return void
     */
-    function renderHtml(&$data)
+    function renderHtml($data)
     {
         $this->_html .= $data->toHtml();
     } // end func renderHtml
@@ -344,7 +344,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @access public
     * @return void
     */
-    function startGroup(&$group, $required, $error)
+    function startGroup($group, $required, $error)
     {
         $name = $group->getName();
         $this->_groupTemplate        = $this->_prepareTemplate($name, $group->getLabel(), $required, $error);
@@ -361,7 +361,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @access   public
     * @return   void
     */
-    function finishGroup(&$group)
+    function finishGroup($group)
     {
         $separator = $group->_separator;
         if (is_array($separator)) {

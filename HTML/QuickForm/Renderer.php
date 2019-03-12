@@ -52,7 +52,7 @@ class HTML_QuickForm_Renderer
     * @return   void 
     * @abstract
     */
-    function startForm(&$form)
+    function startForm($form)
     {
         return;
     } // end func startForm
@@ -65,7 +65,7 @@ class HTML_QuickForm_Renderer
     * @return   void 
     * @abstract
     */
-    function finishForm(&$form)
+    function finishForm($form)
     {
         return;
     } // end func finishForm
@@ -78,7 +78,7 @@ class HTML_QuickForm_Renderer
     * @return   void 
     * @abstract
     */
-    function renderHeader(&$header)
+    function renderHeader($header)
     {
         return;
     } // end func renderHeader
@@ -93,7 +93,7 @@ class HTML_QuickForm_Renderer
     * @return   void 
     * @abstract
     */
-    function renderElement(&$element, $required, $error)
+    function renderElement($element, $required, $error)
     {
         return;
     } // end func renderElement
@@ -106,7 +106,7 @@ class HTML_QuickForm_Renderer
     * @return   void
     * @abstract 
     */
-    function renderHidden(&$element)
+    function renderHidden($element)
     {
         return;
     } // end func renderHidden
@@ -122,7 +122,7 @@ class HTML_QuickForm_Renderer
     * @return   void 
     * @abstract
     */
-    function renderHtml(&$data)
+    function renderHtml($data)
     {
         return;
     } // end func renderHtml
@@ -137,7 +137,7 @@ class HTML_QuickForm_Renderer
     * @return   void 
     * @abstract
     */
-    function startGroup(&$group, $required, $error)
+    function startGroup($group, $required, $error)
     {
         return;
     } // end func startGroup
@@ -150,7 +150,7 @@ class HTML_QuickForm_Renderer
     * @return   void 
     * @abstract
     */
-    function finishGroup(&$group)
+    function finishGroup($group)
     {
         return;
     } // end func finishGroup

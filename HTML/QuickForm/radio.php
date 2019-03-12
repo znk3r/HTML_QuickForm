@@ -192,12 +192,12 @@ class HTML_QuickForm_radio extends HTML_QuickForm_input
      *
      * @param     string    $event  Name of event
      * @param     mixed     $arg    event arguments
-     * @param     object    &$caller calling object
+     * @param     object    $caller calling object
      * @since     1.0
      * @access    public
      * @return    void
      */
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'updateValue':
@@ -235,7 +235,7 @@ class HTML_QuickForm_radio extends HTML_QuickForm_input
    /**
     * Returns the value attribute if the radio is checked, null if it is not
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         $value = $this->_findValue($submitValues);
         if (null === $value) {

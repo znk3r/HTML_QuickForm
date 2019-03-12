@@ -152,7 +152,7 @@ class HTML_QuickForm_Renderer_QuickHtml extends HTML_QuickForm_Renderer_Default 
      * @return mixed HTML string of element if $immediateRender is set, else we just add the
      *               html to the global _html string 
      */
-    function renderElement(&$element, $required, $error)
+    function renderElement($element, $required, $error)
     {
         $this->_html = '';
         parent::renderElement($element, $required, $error);
@@ -176,7 +176,7 @@ class HTML_QuickForm_Renderer_QuickHtml extends HTML_QuickForm_Renderer_Default 
      * @access public
      * @return void
      */
-    function renderHidden(&$element)
+    function renderHidden($element)
     {
         $this->renderedElements[] = array(
                 'name' => $element->getName(), 
@@ -196,7 +196,7 @@ class HTML_QuickForm_Renderer_QuickHtml extends HTML_QuickForm_Renderer_Default 
      * @access   public
      * @return   void
      */
-    function finishGroup(&$group)
+    function finishGroup($group)
     {
         $this->_html = '';
         parent::finishGroup($group);

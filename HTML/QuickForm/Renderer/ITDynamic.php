@@ -97,15 +97,15 @@ class HTML_QuickForm_Renderer_ITDynamic extends HTML_QuickForm_Renderer
     *
     * @param HTML_Template_ITX|HTML_Template_Sigma     Template object to use
     */
-    function HTML_QuickForm_Renderer_ITDynamic(&$tpl)
+    function HTML_QuickForm_Renderer_ITDynamic($tpl)
     {
         $this->HTML_QuickForm_Renderer();
-        $this->_tpl =& $tpl;
+        $this->_tpl = $tpl;
         $this->_tpl->setCurrentBlock('qf_main_loop');
     }
 
 
-    function finishForm(&$form)
+    function finishForm($form)
     {
         // display errors above form
         if (!empty($this->_errors) && $this->_tpl->blockExists('qf_error_loop')) {
@@ -125,7 +125,7 @@ class HTML_QuickForm_Renderer_ITDynamic extends HTML_QuickForm_Renderer
     }
       
 
-    function renderHeader(&$header)
+    function renderHeader($header)
     {
         $blockName = $this->_matchBlock($header);
         if ('qf_header' == $blockName && isset($this->_headerBlock)) {
@@ -137,7 +137,7 @@ class HTML_QuickForm_Renderer_ITDynamic extends HTML_QuickForm_Renderer
     }
 
 
-    function renderElement(&$element, $required, $error)
+    function renderElement($element, $required, $error)
     {
         $blockName = $this->_matchBlock($element);
         // are we inside a group?
@@ -192,14 +192,14 @@ class HTML_QuickForm_Renderer_ITDynamic extends HTML_QuickForm_Renderer
     }
    
 
-    function renderHidden(&$element)
+    function renderHidden($element)
     {
         $this->_tpl->setVariable('qf_hidden', $element->toHtml());
         $this->_tpl->parse('qf_hidden_loop');
     }
 
 
-    function startGroup(&$group, $required, $error)
+    function startGroup($group, $required, $error)
     {
         $blockName = $this->_matchBlock($group);
         $this->_tpl->setCurrentBlock($blockName . '_loop');
@@ -224,7 +224,7 @@ class HTML_QuickForm_Renderer_ITDynamic extends HTML_QuickForm_Renderer
     }
 
 
-    function finishGroup(&$group)
+    function finishGroup($group)
     {
         $this->_tpl->parse($this->_matchBlock($group));
         $this->_tpl->setCurrentBlock('qf_main_loop');
@@ -243,7 +243,7 @@ class HTML_QuickForm_Renderer_ITDynamic extends HTML_QuickForm_Renderer
     * @access private
     * @return string    block name
     */
-    function _matchBlock(&$element)
+    function _matchBlock($element)
     {
         $name = $element->getName();
         $type = $element->getType();

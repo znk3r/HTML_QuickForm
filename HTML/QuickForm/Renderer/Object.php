@@ -118,7 +118,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
         $this->_elementType = $type;
     }
 
-    function startForm(&$form) 
+    function startForm($form)
     {
         $this->_obj->frozen = $form->isFrozen();
         $this->_obj->javascript = $form->getValidationScript();
@@ -134,7 +134,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
         $this->_sectionCount = 0;
     } // end func startForm
 
-    function renderHeader(&$header) 
+    function renderHeader($header)
     {
         $hobj = new StdClass;
         $hobj->header = $header->toHtml();
@@ -142,7 +142,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
         $this->_currentSection = $this->_sectionCount++;
     }
 
-    function renderElement(&$element, $required, $error) 
+    function renderElement($element, $required, $error)
     {
         $elObj = $this->_elementToObject($element, $required, $error);
         if(!empty($error)) {
@@ -152,7 +152,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
         $this->_storeObject($elObj);
     } // end func renderElement
 
-    function renderHidden(&$element)
+    function renderHidden($element)
     {
         if($this->_collectHidden) {
             $this->_obj->hidden .= $element->toHtml() . "\n";
@@ -161,7 +161,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
         }
     } //end func renderHidden
 
-    function startGroup(&$group, $required, $error) 
+    function startGroup($group, $required, $error)
     {
         $this->_currentGroup = $this->_elementToObject($group, $required, $error);
         if(!empty($error)) {
@@ -170,7 +170,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
         }
     } // end func startGroup
 
-    function finishGroup(&$group) 
+    function finishGroup($group)
     {
         $this->_storeObject($this->_currentGroup);
         $this->_currentGroup = null;
@@ -185,7 +185,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
      * @param error string    Error associated with the element
      * @return object
      */
-    function _elementToObject(&$element, $required, $error) 
+    function _elementToObject($element, $required, $error)
     {
         if($this->_elementType) {
             $ret = new $this->_elementType;

@@ -119,7 +119,7 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     } // end constructor
 
 
-    function startForm(&$form)
+    function startForm($form)
     {
         parent::startForm($form);
         $this->_ary['hasrequired'] = false;
@@ -128,7 +128,7 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     } // end func startForm
 
 
-    function renderHeader(&$header)
+    function renderHeader($header)
     {
         $this->_currentSection = $this->_sectionCount++;
         $this->_ary['sections'][$this->_currentSection] = array(
@@ -138,7 +138,7 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     } // end func renderHeader
 
 
-    function startGroup(&$group, $required, $error)
+    function startGroup($group, $required, $error)
     {
         $this->_groupElementIdx = 0;
         $this->_groupElementCount = count($group->getElements());
@@ -153,7 +153,7 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     } // end func startGroup
 
 
-    function finishGroup(&$group)
+    function finishGroup($group)
     {
         $this->_storeArray($this->_currentGroup);
         $this->_currentGroup = null;
@@ -170,7 +170,7 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     * @param  string    Error associated with the element
     * @return array
     */
-    function _elementToArray(&$element, $required, $error)
+    function _elementToArray($element, $required, $error)
     {
         $ret = array(
             'name'      => $element->getName(),

@@ -79,7 +79,7 @@ class HTML_QuickForm_submit extends HTML_QuickForm_input
     * Only return the value if it is found within $submitValues (i.e. if
     * this particular submit button was clicked)
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         return $this->_prepareValue($this->_findValue($submitValues), $assoc);
     }
