@@ -323,7 +323,7 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
     {
         $this->_separator = $this->_elements = array();
         $separator =  '';
-        $locale    =& $this->_locale[$this->_options['language']];
+        $locale    = $this->_locale[$this->_options['language']];
         $backslash =  false;
         for ($i = 0, $length = strlen($this->_options['format']); $i < $length; $i++) {
             $sign = $this->_options['format']{$i};
@@ -423,7 +423,7 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
                             $options = array($this->_options['emptyOptionValue'] => $this->_options['emptyOptionText']) + $options;
                         }
                     }
-                    $this->_elements[] =& new HTML_QuickForm_select($sign, null, $options, $this->getAttributes());
+                    $this->_elements[] = new HTML_QuickForm_select($sign, null, $options, $this->getAttributes());
                 }
             }
         }
@@ -511,7 +511,7 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
     function toHtml()
     {
         include_once('HTML/QuickForm/Renderer/Default.php');
-        $renderer =& new HTML_QuickForm_Renderer_Default();
+        $renderer = new HTML_QuickForm_Renderer_Default();
         $renderer->setElementTemplate('{element}');
         parent::accept($renderer);
         return $this->_wrap[0] . $renderer->toHtml() . $this->_wrap[1];
@@ -520,7 +520,7 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
     // }}}
     // {{{ accept()
 
-    function accept(&$renderer, $required = false, $error = null)
+    function accept($renderer, $required = false, $error = null)
     {
         $renderer->renderElement($this, $required, $error);
     }
@@ -528,7 +528,7 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
     // }}}
     // {{{ onQuickFormEvent()
 
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         if ('updateValue' == $event) {
             // we need to call setValue(), 'cause the default/constant value
