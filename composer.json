@@ -1,54 +1,62 @@
 {
-    "authors": [
-        {
-            "email": "bmansion@mamasam.com",
-            "name": "Bertrand Mansion",
-            "role": "Lead"
-        },
-        {
-            "email": "adaniel1@eesus.jnj.com",
-            "name": "Adam Daniel",
-            "role": "Lead"
-        },
-        {
-            "email": "borz_off@cs.msu.su",
-            "name": "Alexey Borzov",
-            "role": "Lead"
-        },
-        {
-            "email": "jason@rustyparts.com",
-            "name": "Jason Rust",
-            "role": "Developer"
-        },
-        {
-            "email": "ths@4bconsult.de",
-            "name": "Thomas Schulz",
-            "role": "Developer"
-        },
-        {
-            "email": "ron@humaniq.com",
-            "name": "Ron McClain",
-            "role": "Developer"
-        }
-    ],
-    "autoload": {
-        "classmap": [
-            "./"
-        ]
+  "name": "znk3r/html_quickform",
+  "type": "library",
+  "description": "PHP 7 compatible fork of HTML_QuickForm",
+  "keywords": [ "php7", "html", "pear", "form", "quickform" ],
+  "homepage": "https://github.com/znk3r/HTML_QuickForm",
+  "license": "PHP License",
+  "authors": [
+    {
+      "email": "bmansion@mamasam.com",
+      "name": "Bertrand Mansion",
+      "role": "Lead"
     },
-    "description": "More info available on: http://pear.php.net/package/HTML_QuickForm",
-    "license": "PHP License",
-    "name": "pear/html_quickform",
-    "support": {
-        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=HTML_QuickForm",
-        "source": "https://github.com/pear/HTML_QuickForm"
+    {
+      "email": "adaniel1@eesus.jnj.com",
+      "name": "Adam Daniel",
+      "role": "Lead"
     },
-    "type": "library",
-    "require": {
-        "pear/pear_exception": "*",
-        "pear/html_common": "*"
+    {
+      "email": "borz_off@cs.msu.su",
+      "name": "Alexey Borzov",
+      "role": "Lead"
     },
-    "require-dev": {
-        "phpunit/phpunit": "*"
+    {
+      "email": "jason@rustyparts.com",
+      "name": "Jason Rust",
+      "role": "Developer"
+    },
+    {
+      "email": "ths@4bconsult.de",
+      "name": "Thomas Schulz",
+      "role": "Developer"
+    },
+    {
+      "email": "ron@humaniq.com",
+      "name": "Ron McClain",
+      "role": "Developer"
+    },
+    {
+      "email": "mi.liebana@gmail.com",
+      "name": "Miguel Liebana",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": "^7.0.0",
+    "pear/pear_exception": "*",
+    "znk3r/html_common": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "classmap": [
+      "./HTML"
+    ]
+  },
+  "support": {
+    "issues": "https://github.com/znk3r/HTML_QuickForm/issues",
+    "source": "https://github.com/znk3r/HTML_QuickForm"
+  }
 }
