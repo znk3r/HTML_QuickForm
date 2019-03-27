@@ -50,6 +50,9 @@
   "require-dev": {
     "phpunit/phpunit": "*"
   },
+  "replace": {
+    "pear/html_quickform": "*"
+  },
   "autoload": {
     "classmap": [
       "./HTML"
