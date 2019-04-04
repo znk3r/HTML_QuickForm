@@ -122,9 +122,9 @@ class HTML_QuickForm_RuleRegistry
         list($class, $path) = $GLOBALS['_HTML_QuickForm_registered_rules'][$ruleName];
 
         if (!isset($this->_rules[$class])) {
-            if (!empty($path)) {
+            /*if (!empty($path)) {
                 include_once($path);
-            }
+            }*/
             $this->_rules[$class] = new $class();
         }
         $this->_rules[$class]->setName($ruleName);
