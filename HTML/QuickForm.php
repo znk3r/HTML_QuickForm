@@ -595,7 +595,7 @@ class HTML_QuickForm extends HTML_Common
             $error = PEAR::raiseError(null, QUICKFORM_UNREGISTERED_ELEMENT, null, E_USER_WARNING, "Element '$type' does not exist in HTML_QuickForm::_loadElement()", 'HTML_QuickForm_Error', true);
             return $error;
         }
-        $className = $GLOBALS['HTML_QUICKFORM_ELEMENT_TYPES'][$type][1];
+        $className = $GLOBALS['HTML_QUICKFORM_ELEMENT_TYPES'][$type];
         //include_once($includeFile);
         $elementObject = new $className();
         for ($i = 0; $i < 5; $i++) {
