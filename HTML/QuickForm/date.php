@@ -526,19 +526,5 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
     }
 
     // }}}
-    // {{{ onQuickFormEvent()
-
-    function onQuickFormEvent($event, $arg, $caller)
-    {
-        if ('updateValue' == $event) {
-            // we need to call setValue(), 'cause the default/constant value
-            // may be in fact a timestamp, not an array
-            return HTML_QuickForm_element::onQuickFormEvent($event, $arg, $caller);
-        } else {
-            return parent::onQuickFormEvent($event, $arg, $caller);
-        }
-    }
-
-    // }}}
 }
 ?>

@@ -44,7 +44,7 @@ require_once 'HTML/QuickForm/utils.php';
  * @since       1.0
  * @abstract
  */
-class HTML_QuickForm_element extends HTML_Common
+abstract class HTML_QuickForm_element extends HTML_Common
 {
     // {{{ properties
 
@@ -378,8 +378,8 @@ class HTML_QuickForm_element extends HTML_Common
     {
         switch ($event) {
             case 'createElement':
-                $className = get_class($this);
-                $this->$className($arg[0], $arg[1], $arg[2], $arg[3], $arg[4]);
+                // TODO : Why the constructor is called after the creation of object ?
+                $this->__construct($arg[0], $arg[1], $arg[2], $arg[3], $arg[4]);
                 break;
             case 'addElement':
                 $this->onQuickFormEvent('createElement', $arg, $caller);
