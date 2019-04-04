@@ -113,9 +113,9 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     * @param  bool    true: collect all hidden elements into string; false: process them as usual form elements
     * @access public
     */
-    function HTML_QuickForm_Renderer_SavantDynamic($collectHidden = false)
+    function __construct($collectHidden = false)
     {
-        parent::HTML_QuickForm_Renderer_Array($collectHidden);
+        parent::__construct($collectHidden);
     } // end constructor
 
 
