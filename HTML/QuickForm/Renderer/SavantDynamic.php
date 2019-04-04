@@ -225,4 +225,3 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
         return $ret;
     }
 }
-?>

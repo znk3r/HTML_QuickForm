@@ -647,4 +647,3 @@ JAVASCRIPT;
 
     // }}}
 } // end class HTML_QuickForm_hierselect
-?>

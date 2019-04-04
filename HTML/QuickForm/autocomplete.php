@@ -255,4 +255,3 @@ EOS;
 
     // }}}
 } // end class HTML_QuickForm_autocomplete
-?>

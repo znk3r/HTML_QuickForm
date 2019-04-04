@@ -156,4 +156,3 @@ class HTML_QuickForm_utils
         return $source;
     }
 }
-?>
