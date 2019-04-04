@@ -26,15 +26,15 @@
 /**
  * Class for a group of form elements
  */
-require_once 'HTML/QuickForm/group.php';
+//require_once 'HTML/QuickForm/group.php';
 /**
  * Class for <select></select> elements
  */
-require_once 'HTML/QuickForm/select.php';
+//require_once 'HTML/QuickForm/select.php';
 /**
  * Static utility methods
  */
-require_once 'HTML/QuickForm/utils.php';
+//require_once 'HTML/QuickForm/utils.php';
 
 /**
  * Hierarchical select element
