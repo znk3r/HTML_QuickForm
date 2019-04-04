@@ -337,4 +337,4 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
         }
     }
 }
-?>
+

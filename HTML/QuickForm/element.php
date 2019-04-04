@@ -498,4 +498,4 @@ class HTML_QuickForm_element extends HTML_Common
 
     // }}}
 } // end class HTML_QuickForm_element
-?>
+

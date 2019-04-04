@@ -585,4 +585,4 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
 
     // }}}
 } //end class HTML_QuickForm_group
-?>
+

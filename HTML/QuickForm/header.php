@@ -73,4 +73,4 @@ class HTML_QuickForm_header extends HTML_QuickForm_static
     // }}}
 
 } //end class HTML_QuickForm_header
-?>
+

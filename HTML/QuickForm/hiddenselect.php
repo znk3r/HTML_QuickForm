@@ -119,4 +119,4 @@ class HTML_QuickForm_hiddenselect extends HTML_QuickForm_select
 
     // }}}
 } //end class HTML_QuickForm_hiddenselect
-?>
+
