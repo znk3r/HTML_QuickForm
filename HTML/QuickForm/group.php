@@ -394,6 +394,10 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
     {
         switch ($event) {
             case 'updateValue':
+                if (!is_array($this->_elements)) {
+                    return parent::onQuickFormEvent($event, $arg, $caller);
+                }
+
                 $this->_createElementsIfNotExist();
                 foreach (array_keys($this->_elements) as $key) {
                     if ($this->_appendName) {
