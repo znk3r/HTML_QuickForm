@@ -356,9 +356,9 @@ abstract class HTML_QuickForm_element extends HTML_Common
             $arrayKeys = explode("']['", $keys);
             return HTML_QuickForm_utils::recursiveValue($values, $arrayKeys);
 
-        } else {
-            return null;
         }
+        return null;
+
     } //end func _findValue
 
     // }}}

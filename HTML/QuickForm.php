@@ -167,7 +167,7 @@ class HTML_QuickForm extends HTML_Common
      * @var  string
      * @access   public
      */
-    protected $_jsPrefix = 'Invalid information entered.';
+    public $_jsPrefix = 'Invalid information entered.';
 
     /**
      * Postfix message in javascript alert if error
@@ -175,7 +175,7 @@ class HTML_QuickForm extends HTML_Common
      * @var  string
      * @access   public
      */
-    protected $_jsPostfix = 'Please correct these fields.';
+    public $_jsPostfix = 'Please correct these fields.';
 
     /**
      * Datasource object implementing the informal
@@ -192,7 +192,7 @@ class HTML_QuickForm extends HTML_Common
      * @var  array
      * @access   private
      */
-    protected $_defaultValues = array();
+    public $_defaultValues = array();
 
     /**
      * Array of constant form values
@@ -200,7 +200,7 @@ class HTML_QuickForm extends HTML_Common
      * @var  array
      * @access   private
      */
-    protected $_constantValues = array();
+    public $_constantValues = array();
 
     /**
      * Array of submitted form values
@@ -208,7 +208,7 @@ class HTML_QuickForm extends HTML_Common
      * @var  array
      * @access   private
      */
-    protected $_submitValues = array();
+    public $_submitValues = array();
 
     /**
      * Array of submitted form files
@@ -216,7 +216,7 @@ class HTML_QuickForm extends HTML_Common
      * @var  integer
      * @access   public
      */
-    protected $_submitFiles = array();
+    public $_submitFiles = array();
 
     /**
      * Value for maxfilesize hidden element if form contains file input
@@ -224,7 +224,7 @@ class HTML_QuickForm extends HTML_Common
      * @var  integer
      * @access   public
      */
-    protected $_maxFileSize = 1048576; // 1 Mb = 1048576
+    public $_maxFileSize = 1048576; // 1 Mb = 1048576
 
     /**
      * Flag to know if all fields are frozen
