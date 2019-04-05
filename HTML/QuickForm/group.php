@@ -60,7 +60,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     2.5
      * @access    private
      */
-    protected $_separator = null;
+    public $_separator = null;
 
     /**
      * Required elements in this group
