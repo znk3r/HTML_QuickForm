@@ -24,11 +24,6 @@
  */
 
 /**
- * Base class for form elements
- */ 
-//require_once 'HTML/QuickForm/element.php';
-
-/**
  * Class to dynamically create an HTML SELECT
  *
  * @category    HTML
@@ -402,7 +397,6 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
     function loadQuery($conn, $sql, $textCol=null, $valueCol=null, $values=null)
     {
         if (is_string($conn)) {
-            //require_once('DB.php');
             $dbConn = DB::connect($conn, true);
             if (DB::isError($dbConn)) {
                 return $dbConn;
