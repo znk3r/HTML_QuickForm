@@ -54,7 +54,7 @@ abstract class HTML_QuickForm_element extends HTML_Common
      * @since     1.3
      * @access    private
      */
-    var $_label = '';
+    protected $_label = '';
 
     /**
      * Form element type
@@ -62,7 +62,7 @@ abstract class HTML_QuickForm_element extends HTML_Common
      * @since     1.0
      * @access    private
      */
-    var $_type = '';
+    protected $_type = '';
 
     /**
      * Flag to tell if element is frozen
@@ -70,7 +70,7 @@ abstract class HTML_QuickForm_element extends HTML_Common
      * @since     1.0
      * @access    private
      */
-    var $_flagFrozen = false;
+    protected $_flagFrozen = false;
 
     /**
      * Does the element support persistant data when frozen
@@ -78,7 +78,7 @@ abstract class HTML_QuickForm_element extends HTML_Common
      * @since     1.3
      * @access    private
      */
-    var $_persistantFreeze = false;
+    protected $_persistantFreeze = false;
 
     // }}}
     // {{{ constructor
@@ -372,14 +372,14 @@ abstract class HTML_QuickForm_element extends HTML_Common
      * @param     object    $caller calling object
      * @since     1.0
      * @access    public
-     * @return    void
+     * @return    bool
      */
     function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'createElement':
                 // TODO : Why the constructor is called after the creation of object ?
-                $this->__construct($arg[0], $arg[1], $arg[2], $arg[3], $arg[4]);
+                $this->__construct($arg[0], $arg[1], $arg[2]);
                 break;
             case 'addElement':
                 $this->onQuickFormEvent('createElement', $arg, $caller);

@@ -44,7 +44,7 @@ class HTML_QuickForm_static extends HTML_QuickForm_element {
      * @var       string
      * @access    private
      */
-    var $_text = null;
+    protected $_text = null;
 
     // }}}
     // {{{ constructor

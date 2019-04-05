@@ -59,7 +59,7 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
      * @var array
      * @access private
      */
-    var $_values = null;
+    protected $_values = null;
 
     /**
      * The default value
@@ -67,7 +67,7 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
      * @var boolean
      * @access private
      */
-    var $_currentValue = null;
+    protected $_currentValue = null;
 
     // }}}
     // {{{ constructor
@@ -271,7 +271,7 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
     * This element has a value even if it is not checked, thus we override
     * checkbox's behaviour here
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         $value = $this->_findValue($submitValues);
         if (null === $value) {

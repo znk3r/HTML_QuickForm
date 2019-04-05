@@ -27,7 +27,7 @@
 /**
  * An abstract base class for QuickForm renderers
  */
-require_once 'HTML/QuickForm/Renderer.php';
+//require_once 'HTML/QuickForm/Renderer.php';
 
 /**
  * A concrete renderer for HTML_QuickForm, makes an array of form contents
@@ -121,44 +121,51 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     * An array being generated
     * @var array
     */
-    var $_ary;
+    protected $_ary;
 
    /**
     * Number of sections in the form (i.e. number of headers in it)
     * @var integer
     */
-    var $_sectionCount;
+    protected $_sectionCount;
 
    /**
     * Current section number
     * @var integer
     */
-    var $_currentSection;
+    protected $_currentSection;
 
    /**
     * Array representing current group
     * @var array
     */
-    var $_currentGroup = null;
+    protected $_currentGroup = null;
 
    /**
     * Additional style information for different elements
     * @var array
     */
-    var $_elementStyles = array();
+    protected $_elementStyles = array();
 
    /**
     * true: collect all hidden elements into string; false: process them as usual form elements
     * @var bool
     */
-    var $_collectHidden = false;
+    protected $_collectHidden = false;
 
    /**
     * true:  render an array of labels to many labels, $key 0 named 'label', the rest "label_$key"
     * false: leave labels as defined
     * @var bool
     */
-    var $_staticLabels = false;
+    protected $_staticLabels = false;
+
+    /**
+     * Current element index
+     * @var integer
+     */
+    protected $_elementIdx = 0;
+
    /**#@-*/
 
    /**
@@ -168,9 +175,9 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     * @param  bool    true: render an array of labels to many labels, $key 0 to 'label' and the oterh to "label_$key"
     * @access public
     */
-    function HTML_QuickForm_Renderer_Array($collectHidden = false, $staticLabels = false)
+    public function __construct($collectHidden = false, $staticLabels = false)
     {
-        $this->HTML_QuickForm_Renderer();
+        parent::__construct();
         $this->_collectHidden = $collectHidden;
         $this->_staticLabels  = $staticLabels;
     } // end constructor
@@ -182,13 +189,13 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     * @access public
     * @return array
     */
-    function toArray()
+    public function toArray()
     {
         return $this->_ary;
     }
 
 
-    function startForm($form)
+    public function startForm($form)
     {
         $this->_ary = array(
             'frozen'            => $form->isFrozen(),
@@ -206,7 +213,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func startForm
 
 
-    function renderHeader($header)
+    public function renderHeader($header)
     {
         $this->_ary['sections'][$this->_sectionCount] = array(
             'header' => $header->toHtml(),
@@ -216,7 +223,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func renderHeader
 
 
-    function renderElement($element, $required, $error)
+    public function renderElement($element, $required, $error)
     {
         $elAry = $this->_elementToArray($element, $required, $error);
         if (!empty($error)) {
@@ -226,7 +233,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func renderElement
 
 
-    function renderHidden($element)
+    public function renderHidden($element)
     {
         if ($this->_collectHidden) {
             $this->_ary['hidden'] .= $element->toHtml() . "\n";
@@ -236,7 +243,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func renderHidden
 
 
-    function startGroup($group, $required, $error)
+    public function startGroup($group, $required, $error)
     {
         $this->_currentGroup = $this->_elementToArray($group, $required, $error);
         if (!empty($error)) {
@@ -245,7 +252,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     } // end func startGroup
 
 
-    function finishGroup($group)
+    public function finishGroup($group)
     {
         $this->_storeArray($this->_currentGroup);
         $this->_currentGroup = null;
@@ -261,7 +268,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     * @param  string                    Error associated with the element
     * @return array
     */
-    function _elementToArray($element, $required, $error)
+    protected function _elementToArray($element, $required, $error)
     {
         $ret = array(
             'name'      => $element->getName(),
@@ -307,7 +314,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     * @param array  Array representation of an element
     * @return void
     */
-    function _storeArray($elAry)
+    protected function _storeArray($elAry)
     {
         // where should we put this element...
         if (is_array($this->_currentGroup) && ('group' != $elAry['type'])) {
@@ -328,7 +335,7 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     * @access public
     * @return void
     */
-    function setElementStyle($elementName, $styleName = null)
+    public function setElementStyle($elementName, $styleName = null)
     {
         if (is_array($elementName)) {
             $this->_elementStyles = array_merge($this->_elementStyles, $elementName);
@@ -337,4 +344,4 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
         }
     }
 }
-?>
+

@@ -49,7 +49,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     1.0
      * @access    private
      */
-    var $_name = '';
+    protected $_name = '';
 
     /**
      * Array of grouped elements
@@ -57,7 +57,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     1.0
      * @access    private
      */
-    var $_elements = array();
+    protected $_elements = array();
 
     /**
      * String to separate elements
@@ -65,7 +65,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     2.5
      * @access    private
      */
-    var $_separator = null;
+    protected $_separator = null;
 
     /**
      * Required elements in this group
@@ -73,7 +73,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     2.5
      * @access    private
      */
-    var $_required = array();
+    protected $_required = array();
 
    /**
     * Whether to change elements' names to $groupName[$elementName] or leave them as is 
@@ -81,7 +81,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
     * @since    3.0
     * @access   private
     */
-    var $_appendName = true;
+    protected $_appendName = true;
 
     // }}}
     // {{{ constructor
@@ -388,7 +388,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @param     object    $caller calling object
      * @since     1.0
      * @access    public
-     * @return    void
+     * @return    bool
      */
     function onQuickFormEvent($event, $arg, $caller)
     {

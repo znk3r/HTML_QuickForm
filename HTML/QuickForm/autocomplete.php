@@ -60,7 +60,7 @@ class HTML_QuickForm_autocomplete extends HTML_QuickForm_text
      * @var       array
      * @access    private
      */
-    var $_options = array();
+    protected $_options = array();
 
     /**
      * "One-time" javascript (containing functions), see bug #4611
@@ -68,7 +68,7 @@ class HTML_QuickForm_autocomplete extends HTML_QuickForm_text
      * @var     string
      * @access  private
      */
-    var $_js = '';
+    protected $_js = '';
 
     // }}}
     // {{{ constructor

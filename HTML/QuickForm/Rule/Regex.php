@@ -46,7 +46,7 @@ class HTML_QuickForm_Rule_Regex extends HTML_QuickForm_Rule
      * @var     array
      * @access  private
      */
-    var $_data = array(
+    protected $_data = array(
                     'lettersonly'   => '/^[a-zA-Z]+$/',
                     'alphanumeric'  => '/^[a-zA-Z0-9]+$/',
                     'numeric'       => '/(^-?\d\d*\.\d*$)|(^-?\d\d*$)|(^-?\.\d\d*$)/',

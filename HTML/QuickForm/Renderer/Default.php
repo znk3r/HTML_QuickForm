@@ -46,14 +46,14 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @var      string
     * @access   private
     */
-    var $_html;
+    protected $_html;
 
    /**
     * Header Template string
     * @var      string
     * @access   private
     */
-    var $_headerTemplate = 
+    protected $_headerTemplate = 
         "\n\t<tr>\n\t\t<td style=\"white-space: nowrap; background-color: #CCCCCC;\" align=\"left\" valign=\"top\" colspan=\"2\"><b>{header}</b></td>\n\t</tr>";
 
    /**
@@ -61,7 +61,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @var      string
     * @access   private
     */
-    var $_elementTemplate = 
+    protected $_elementTemplate = 
         "\n\t<tr>\n\t\t<td align=\"right\" valign=\"top\"><!-- BEGIN required --><span style=\"color: #ff0000\">*</span><!-- END required --><b>{label}</b></td>\n\t\t<td valign=\"top\" align=\"left\"><!-- BEGIN error --><span style=\"color: #ff0000\">{error}</span><br /><!-- END error -->\t{element}</td>\n\t</tr>";
 
    /**
@@ -69,7 +69,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @var      string
     * @access   private
     */
-    var $_formTemplate = 
+    protected $_formTemplate = 
         "\n<form{attributes}>\n<div>\n{hidden}<table border=\"0\">\n{content}\n</table>\n</div>\n</form>";
 
    /**
@@ -77,7 +77,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @var      string
     * @access   private
     */
-    var $_requiredNoteTemplate = 
+    protected $_requiredNoteTemplate = 
         "\n\t<tr>\n\t\t<td></td>\n\t<td align=\"left\" valign=\"top\">{requiredNote}</td>\n\t</tr>";
 
    /**
@@ -85,7 +85,7 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @var      array
     * @access   private
     */
-    var $_templates = array();
+    protected $_templates = array();
 
    /**
     * Array containing the templates for group wraps.
@@ -96,56 +96,56 @@ class HTML_QuickForm_Renderer_Default extends HTML_QuickForm_Renderer
     * @var      array
     * @access   private
     */
-    var $_groupWraps = array();
+    protected $_groupWraps = array();
 
    /**
     * Array containing the templates for elements within groups
     * @var      array
     * @access   private
     */
-    var $_groupTemplates = array();
+    protected $_groupTemplates = array();
 
    /**
     * True if we are inside a group 
     * @var      bool
     * @access   private
     */
-    var $_inGroup = false;
+    protected $_inGroup = false;
 
    /**
     * Array with HTML generated for group elements
     * @var      array
     * @access   private
     */
-    var $_groupElements = array();
+    protected $_groupElements = array();
 
    /**
     * Template for an element inside a group
     * @var      string
     * @access   private
     */
-    var $_groupElementTemplate = '';
+    protected $_groupElementTemplate = '';
 
    /**
     * HTML that wraps around the group elements
     * @var      string
     * @access   private
     */
-    var $_groupWrap = '';
+    protected $_groupWrap = '';
 
    /**
     * HTML for the current group
     * @var      string
     * @access   private
     */
-    var $_groupTemplate = '';
+    protected $_groupTemplate = '';
     
    /**
     * Collected HTML of the hidden fields
     * @var      string
     * @access   private
     */
-    var $_hiddenHtml = '';
+    protected $_hiddenHtml = '';
 
    /**
     * Constructor

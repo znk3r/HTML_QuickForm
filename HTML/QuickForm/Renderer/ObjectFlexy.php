@@ -62,40 +62,40 @@ class HTML_QuickForm_Renderer_ObjectFlexy extends HTML_QuickForm_Renderer_Object
      * HTML_Template_Flexy instance
      * @var object $_flexy
      */
-    var $_flexy;
+    protected $_flexy;
 
     /**
      * Current element index
      * @var integer $_elementIdx
      */
-    var $_elementIdx;
+    protected $_elementIdx;
 
     /**
      * The current element index inside a group
      * @var integer $_groupElementIdx
      */
-    var $_groupElementIdx = 0;
+    protected $_groupElementIdx = 0;
 
     /**
      * Name of template file for form html
      * @var string $_html
      * @see     setRequiredTemplate()
      */
-    var $_html = '';
+    protected $_html = '';
 
     /**
      * Name of template file for form labels
      * @var string $label
      * @see        setErrorTemplate()
      */
-    var $label = '';
+    protected $_label = '';
 
     /**
      * Class of the element objects, so you can add your own
      * element methods
      * @var string $_elementType
      */
-    var $_elementType = 'QuickformFlexyElement';
+    protected $_elementType = 'QuickformFlexyElement';
    /**#@-*/
 
     /**

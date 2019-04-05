@@ -50,61 +50,61 @@ class HTML_QuickForm_Renderer_ITStatic extends HTML_QuickForm_Renderer
     * An HTML_Template_IT or some other API compatible Template instance
     * @var object
     */
-    var $_tpl = null;
+    protected $_tpl = null;
 
    /**
     * Rendered form name
     * @var string
     */
-    var $_formName = 'form';
+    protected $_formName = 'form';
 
    /**
     * The errors that were not shown near concrete fields go here
     * @var array
     */
-    var $_errors = array();
+    protected $_errors = array();
 
    /**
     * Show the block with required note?
     * @var bool
     */
-    var $_showRequired = false;
+    protected $_showRequired = false;
 
    /**
     * Which group are we currently parsing ?
     * @var string
     */
-    var $_inGroup;
+    protected $_inGroup;
 
    /**
     * Index of the element in its group
     * @var int
     */
-    var $_elementIndex = 0;
+    protected $_elementIndex = 0;
 
    /**
     * If elements have been added with the same name
     * @var array
     */
-    var $_duplicateElements = array();
+    protected $_duplicateElements = array();
 
    /**
     * How to handle the required tag for required fields
     * @var string
     */
-    var $_required = '{label}<font size="1" color="red">*</font>';
+    protected $_required = '{label}<font size="1" color="red">*</font>';
 
    /**
     * How to handle error messages in form validation
     * @var string
     */
-    var $_error = '<font color="red">{error}</font><br />{html}';
+    protected $_error = '<font color="red">{error}</font><br />{html}';
 
    /**
     * Collected HTML for hidden elements, if needed  
     * @var string
     */
-    var $_hidden = '';
+    protected $_hidden = '';
    /**#@-*/
 
    /**

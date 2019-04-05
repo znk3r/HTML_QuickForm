@@ -42,7 +42,7 @@ class HTML_QuickForm_Rule
     * @var  string
     * @access   public
     */
-    var $name;
+    protected $name;
 
    /**
     * Validates a value

@@ -47,7 +47,7 @@ class HTML_QuickForm_Rule_Callback extends HTML_QuickForm_Rule
      * @var     array
      * @access  private
      */
-    var $_data = array();
+    protected $_data = array();
 
    /**
     * Whether to use BC mode for specific rules
@@ -59,7 +59,7 @@ class HTML_QuickForm_Rule_Callback extends HTML_QuickForm_Rule
     * @var array
     * @access private
     */
-    var $_BCMode = array();
+    protected $_BCMode = array();
 
     /**
      * Validates a value using a callback

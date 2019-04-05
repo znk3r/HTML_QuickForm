@@ -42,7 +42,7 @@ class HTML_QuickForm_xbutton extends HTML_QuickForm_element
     * @var      string
     * @access   private
     */
-    var $_content; 
+    protected $_content; 
 
    /**
     * Class constructor
