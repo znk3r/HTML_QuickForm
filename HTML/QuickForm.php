@@ -622,17 +622,22 @@ class HTML_QuickForm extends HTML_Common
      *
      * @param    mixed      $element        element object or type of element to add (text, textarea, file...)
      * @since    1.0
-     * @return   HTML_QuickForm_Element     a reference to newly added element
+     * @return   HTML_QuickForm_element     a reference to newly added element
      * @access   public
      * @throws   HTML_QuickForm_Error
      */
-    function addElement($element)
+    function addElement()
     {
-        if (is_object($element) && is_subclass_of($element, 'html_quickform_element')) {
+        $args = func_get_args();
+        if (count($args) === 0){
+            throw new InvalidArgumentException('No argument provided for '.__METHOD__);
+        }
+
+        $element = $args[0];
+        if (is_object($element) && is_subclass_of($element, HTML_QuickForm_element::class)) {
            $elementObject = $element;
            $elementObject->onQuickFormEvent('updateValue', null, $this);
         } else {
-            $args = func_get_args();
             $elementObject = $this->_loadElement('addElement', $element, array_slice($args, 1));
             if (PEAR::isError($elementObject)) {
                 return $elementObject;
