@@ -93,19 +93,19 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     * A separator for group elements
     * @var mixed
     */
-    var $_groupSeparator = null;
+    protected $_groupSeparator = null;
 
    /**
     * The current element index inside a group
     * @var integer
     */
-    var $_groupElementIdx = 0;
+    protected $_groupElementIdx = 0;
 
    /**
     * The number of elements in the current group
     * @var integer
     */
-    var $_groupElementCount = 0;
+    protected $_groupElementCount = 0;
 
    /**
     * Constructor

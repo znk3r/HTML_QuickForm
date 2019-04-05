@@ -41,8 +41,9 @@ class HTML_QuickForm_RuleRegistry
      * @var     array
      * @access  private
      */
-    var $_rules = array();
+    private $_rules = array();
 
+    private static $obj;
 
     /**
      * Returns a singleton of HTML_QuickForm_RuleRegistry
@@ -54,13 +55,12 @@ class HTML_QuickForm_RuleRegistry
      * @static
      * @return    HTML_QuickForm_RuleRegistry
      */
-    function singleton()
+    public static function singleton()
     {
-        static $obj;
-        if (!isset($obj)) {
-            $obj = new HTML_QuickForm_RuleRegistry();
+        if (!isset(self::$obj)) {
+            self::$obj = new HTML_QuickForm_RuleRegistry();
         }
-        return $obj;
+        return self::$obj;
     } // end func singleton
 
     /**

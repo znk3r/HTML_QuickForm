@@ -63,7 +63,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * @var       array
      * @access    private
      */
-    var $_options = array();
+    protected $_options = array();
 
     /**
      * Number of select elements on this group
@@ -71,7 +71,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * @var       int
      * @access    private
      */
-    var $_nbElements = 0;
+    protected $_nbElements = 0;
 
     /**
      * The javascript used to set and change the options
@@ -79,7 +79,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * @var       string
      * @access    private
      */
-    var $_js = '';
+    protected $_js = '';
 
     // }}}
     // {{{ constructor

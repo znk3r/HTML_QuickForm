@@ -47,7 +47,7 @@ class HTML_QuickForm_radio extends HTML_QuickForm_input
      * @since     1.1
      * @access    private
      */
-    var $_text = '';
+    protected $_text = '';
 
     // }}}
     // {{{ constructor

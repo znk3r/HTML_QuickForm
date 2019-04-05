@@ -50,7 +50,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @since     1.0
      * @access    private
      */
-    var $_options = array();
+    protected $_options = array();
     
     /**
      * Default values of the SELECT
@@ -59,7 +59,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @since     1.0
      * @access    private
      */
-    var $_values = null;
+    protected $_values = null;
 
     // }}}
     // {{{ constructor
@@ -396,7 +396,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @param     mixed     $values     (optional) Array or comma delimited string of selected values
      * @since     1.1
      * @access    public
-     * @return    void
+     * @return    bool
      * @throws    PEAR_Error
      */
     function loadQuery($conn, $sql, $textCol=null, $valueCol=null, $values=null)

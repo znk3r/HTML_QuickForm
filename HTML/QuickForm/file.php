@@ -55,7 +55,7 @@ class HTML_QuickForm_file extends HTML_QuickForm_input
     * Uploaded file data, from $_FILES
     * @var array
     */
-    var $_value = null;
+    protected $_value = null;
 
     // }}}
     // {{{ constructor

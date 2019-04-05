@@ -47,7 +47,7 @@ class HTML_QuickForm_link extends HTML_QuickForm_static
      * @since     1.0
      * @access    private
      */
-    var $_text = "";
+    protected $_text = "";
 
     // }}}
     // {{{ constructor

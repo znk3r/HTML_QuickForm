@@ -48,7 +48,7 @@ class HTML_QuickForm_Renderer_QuickHtml extends HTML_QuickForm_Renderer_Default 
      * The array of rendered elements
      * @var array
      */
-    var $renderedElements = array();
+    protected $renderedElements = array();
 
     // }}}
     // {{{ constructor

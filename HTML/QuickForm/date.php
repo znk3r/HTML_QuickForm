@@ -52,7 +52,7 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
     * @access   private
     * @var      array
     */
-    var $_options = array(
+    protected $_options = array(
         'language'         => 'en',
         'format'           => 'dMY',
         'minYear'          => 2001,
@@ -68,7 +68,7 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
     * @access   private
     * @var      array
     */
-    var $_wrap = array('', '');
+    protected $_wrap = array('', '');
 
    /**
     * Options in different languages
@@ -79,7 +79,7 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
     * @access   private
     * @var      array
     */
-    var $_locale = array(
+    protected $_locale = array(
         'en'    => array (
             'weekdays_short'=> array ('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
             'weekdays_long' => array ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
