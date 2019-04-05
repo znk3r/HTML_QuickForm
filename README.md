@@ -24,3 +24,35 @@ Install library in your legacy project for migration to other library:
 ```
 composer require "znk3r/html_quickform:^4.0.0" "friendsofpear/pear_exception:0.0.*" "znk3r/html_common:*" "pear/pear:^1.10"
 ```
+
+Migration from version 3.x to 4.0
+---------------------------------
+
+## Create form
+
+**Before:**
+
+```php
+$form = new &HTML_QuickForm(...);
+```
+
+**After:**
+
+```php
+$form = new HTML_QuickForm(...);
+```
+
+
+## Create element
+
+**Before:**
+
+```php
+$element = &HTML_QuickForm::createElement(...);
+```
+
+**After:**
+
+```php
+$element = $form->createElement(...);
+```
