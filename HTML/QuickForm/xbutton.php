@@ -22,11 +22,6 @@
  */
 
 /**
- * Base class for form elements
- */ 
-require_once 'HTML/QuickForm/element.php';
-
-/**
  * Class for HTML 4.0 <button> element
  * 
  * @category    HTML
@@ -42,7 +37,7 @@ class HTML_QuickForm_xbutton extends HTML_QuickForm_element
     * @var      string
     * @access   private
     */
-    var $_content; 
+    protected $_content; 
 
    /**
     * Class constructor
@@ -52,9 +47,9 @@ class HTML_QuickForm_xbutton extends HTML_QuickForm_element
     * @param    mixed   Either a typical HTML attribute string or an associative array
     * @access   public
     */
-    function HTML_QuickForm_xbutton($elementName = null, $elementContent = null, $attributes = null)
+    function __construct($elementName = null, $elementContent = null, $attributes = null)
     {
-        $this->HTML_QuickForm_element($elementName, null, $attributes);
+        parent::__construct($elementName, null, $attributes);
         $this->setContent($elementContent);
         $this->setPersistantFreeze(false);
         $this->_type = 'xbutton';
@@ -150,4 +145,4 @@ class HTML_QuickForm_xbutton extends HTML_QuickForm_element
         }
     }
 }
-?>
+

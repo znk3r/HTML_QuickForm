@@ -22,11 +22,6 @@
  */
 
 /**
- * Abstract base class for QuickForm validation rules 
- */
-require_once 'HTML/QuickForm/Rule.php';
-
-/**
  * Rule to compare two form fields
  * 
  * The most common usage for this is to ensure that the password 
@@ -45,7 +40,7 @@ class HTML_QuickForm_Rule_Compare extends HTML_QuickForm_Rule
     * @var array
     * @access private
     */
-    var $_operators = array(
+    protected $_operators = array(
         'eq'  => '===',
         'neq' => '!==',
         'gt'  => '>',
@@ -77,17 +72,33 @@ class HTML_QuickForm_Rule_Compare extends HTML_QuickForm_Rule
         }
     }
 
-
     function validate($values, $operator = null)
     {
         $operator = $this->_findOperator($operator);
-        if ('===' != $operator && '!==' != $operator) {
-            $compareFn = create_function('$a, $b', 'return floatval($a) ' . $operator . ' floatval($b);');
-        } else {
-            $compareFn = create_function('$a, $b', 'return strval($a) ' . $operator . ' strval($b);');
+        $a=$values[0];
+        $b=$values[1];
+        $result = false;
+        switch ($operator) {
+            case '>':
+                $result = floatval($a) > floatval($b);
+                break;
+            case '>=':
+                $result = floatval($a) >= floatval($b);
+                break;
+            case '<':
+                $result = floatval($a) < floatval($b);
+                break;
+            case '<=':
+                $result = floatval($a) <= floatval($b);
+                break;
+            case '===':
+                $result = strval($a) === strval($b);
+                break;
+            case '!==':
+                $result = strval($a) !== strval($b);
+                break;
         }
-        
-        return $compareFn($values[0], $values[1]);
+        return $result;
     }
 
 
@@ -102,4 +113,4 @@ class HTML_QuickForm_Rule_Compare extends HTML_QuickForm_Rule
         return array('', "'' != {jsVar}[0] && {$check}");
     }
 }
-?>
+

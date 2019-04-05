@@ -22,11 +22,6 @@
  */
 
 /**
- * HTML class for a text field
- */
-require_once 'HTML/QuickForm/text.php';
-
-/**
  * HTML class for an autocomplete element
  *
  * Creates an HTML input text element that
@@ -60,7 +55,7 @@ class HTML_QuickForm_autocomplete extends HTML_QuickForm_text
      * @var       array
      * @access    private
      */
-    var $_options = array();
+    protected $_options = array();
 
     /**
      * "One-time" javascript (containing functions), see bug #4611
@@ -68,7 +63,7 @@ class HTML_QuickForm_autocomplete extends HTML_QuickForm_text
      * @var     string
      * @access  private
      */
-    var $_js = '';
+    protected $_js = '';
 
     // }}}
     // {{{ constructor
@@ -84,9 +79,9 @@ class HTML_QuickForm_autocomplete extends HTML_QuickForm_text
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_autocomplete($elementName = null, $elementLabel = null, $options = null, $attributes = null)
+    function __construct($elementName = null, $elementLabel = null, $options = null, $attributes = null)
     {
-        $this->HTML_QuickForm_text($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         $this->_type = 'autocomplete';
         if (isset($options)) {
@@ -255,4 +250,3 @@ EOS;
 
     // }}}
 } // end class HTML_QuickForm_autocomplete
-?>

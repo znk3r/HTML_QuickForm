@@ -23,11 +23,6 @@
  */
 
 /**
- * Base class for form elements
- */ 
-require_once 'HTML/QuickForm/element.php';
-
-/**
  * Base class for <input /> form elements
  * 
  * @category    HTML
@@ -52,9 +47,9 @@ class HTML_QuickForm_input extends HTML_QuickForm_element
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_input($elementName=null, $elementLabel=null, $attributes=null)
+    function __construct($elementName=null, $elementLabel=null, $attributes=null)
     {
-        $this->HTML_QuickForm_element($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
     } //end constructor
 
     // }}}
@@ -206,4 +201,4 @@ class HTML_QuickForm_input extends HTML_QuickForm_element
     
     // }}}
 } // end class HTML_QuickForm_element
-?>
+

@@ -22,11 +22,6 @@
  */
 
 /**
- * Abstract base class for QuickForm validation rules 
- */
-require_once 'HTML/QuickForm/Rule.php';
-
-/**
  * Required elements validation
  *
  * @category    HTML
@@ -62,4 +57,4 @@ class HTML_QuickForm_Rule_Required extends HTML_QuickForm_Rule
     } // end func getValidationScript
 
 } // end class HTML_QuickForm_Rule_Required
-?>
+

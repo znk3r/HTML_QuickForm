@@ -23,11 +23,6 @@
  * @link        http://pear.php.net/package/HTML_QuickForm
  */
 
-/**
- * Base class for <input /> form elements
- */
-require_once 'HTML/QuickForm/input.php';
-
 // register file-related rules
 if (class_exists('HTML_QuickForm')) {
     HTML_QuickForm::registerRule('uploadedfile', 'callback', '_ruleIsUploadedFile', 'HTML_QuickForm_file');
@@ -55,7 +50,7 @@ class HTML_QuickForm_file extends HTML_QuickForm_input
     * Uploaded file data, from $_FILES
     * @var array
     */
-    var $_value = null;
+    protected $_value = null;
 
     // }}}
     // {{{ constructor
@@ -70,9 +65,9 @@ class HTML_QuickForm_file extends HTML_QuickForm_input
      * @since     1.0
      * @access    public
      */
-    function HTML_QuickForm_file($elementName=null, $elementLabel=null, $attributes=null)
+    public function __construct($elementName=null, $elementLabel=null, $attributes=null)
     {
-        HTML_QuickForm_input::HTML_QuickForm_input($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->setType('file');
     } //end constructor
     
@@ -185,8 +180,8 @@ class HTML_QuickForm_file extends HTML_QuickForm_input
                 return $this->onQuickFormEvent('updateValue', null, $caller);
                 break;
             case 'createElement':
-                $className = get_class($this);
-                $this->$className($arg[0], $arg[1], $arg[2]);
+                // TODO : Why the constructor is called after the creation of object ?
+                $this->__construct($arg[0], $arg[1], $arg[2]);
                 break;
         }
         return true;
@@ -357,4 +352,4 @@ class HTML_QuickForm_file extends HTML_QuickForm_input
 
     // }}}
 } // end class HTML_QuickForm_file
-?>
+

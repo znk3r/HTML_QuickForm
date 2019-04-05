@@ -24,11 +24,6 @@
  */
 
 /**
- * Base class for form elements
- */ 
-require_once 'HTML/QuickForm/element.php';
-
-/**
  * HTML class for a form element group
  * 
  * @category    HTML
@@ -49,7 +44,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     1.0
      * @access    private
      */
-    var $_name = '';
+    protected $_name = '';
 
     /**
      * Array of grouped elements
@@ -57,7 +52,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     1.0
      * @access    private
      */
-    var $_elements = array();
+    protected $_elements = array();
 
     /**
      * String to separate elements
@@ -65,7 +60,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     2.5
      * @access    private
      */
-    var $_separator = null;
+    public $_separator = null;
 
     /**
      * Required elements in this group
@@ -73,7 +68,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @since     2.5
      * @access    private
      */
-    var $_required = array();
+    protected $_required = array();
 
    /**
     * Whether to change elements' names to $groupName[$elementName] or leave them as is 
@@ -81,7 +76,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
     * @since    3.0
     * @access   private
     */
-    var $_appendName = true;
+    protected $_appendName = true;
 
     // }}}
     // {{{ constructor
@@ -101,9 +96,9 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_group($elementName=null, $elementLabel=null, $elements=null, $separator=null, $appendName = true)
+    public function __construct($elementName=null, $elementLabel=null, $elements=null, $separator=null, $appendName = true)
     {
-        $this->HTML_QuickForm_element($elementName, $elementLabel);
+        parent::__construct($elementName, $elementLabel);
         $this->_type = 'group';
         if (isset($elements) && is_array($elements)) {
             $this->setElements($elements);
@@ -298,7 +293,6 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      */
     function toHtml()
     {
-        include_once('HTML/QuickForm/Renderer/Default.php');
         $renderer = new HTML_QuickForm_Renderer_Default();
         $renderer->setElementTemplate('{element}');
         $this->accept($renderer);
@@ -388,12 +382,16 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @param     object    $caller calling object
      * @since     1.0
      * @access    public
-     * @return    void
+     * @return    bool
      */
     function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'updateValue':
+                if (!is_array($this->_elements)) {
+                    return parent::onQuickFormEvent($event, $arg, $caller);
+                }
+
                 $this->_createElementsIfNotExist();
                 foreach (array_keys($this->_elements) as $key) {
                     if ($this->_appendName) {
@@ -585,4 +583,4 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
 
     // }}}
 } //end class HTML_QuickForm_group
-?>
+

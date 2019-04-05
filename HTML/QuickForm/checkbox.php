@@ -24,11 +24,6 @@
  */
 
 /**
- * Base class for <input /> form elements
- */
-require_once 'HTML/QuickForm/input.php';
-
-/**
  * HTML class for a checkbox type field
  * 
  * @category    HTML
@@ -49,7 +44,7 @@ class HTML_QuickForm_checkbox extends HTML_QuickForm_input
      * @since     1.1
      * @access    private
      */
-    var $_text = '';
+    protected $_text = '';
 
     // }}}
     // {{{ constructor
@@ -66,9 +61,9 @@ class HTML_QuickForm_checkbox extends HTML_QuickForm_input
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_checkbox($elementName=null, $elementLabel=null, $text='', $attributes=null)
+    function __construct($elementName=null, $elementLabel=null, $text='', $attributes=null)
     {
-        HTML_QuickForm_input::HTML_QuickForm_input($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         $this->_text = $text;
         $this->setType('checkbox');
@@ -197,7 +192,7 @@ class HTML_QuickForm_checkbox extends HTML_QuickForm_input
      */
     function setValue($value)
     {
-        return $this->setChecked($value);
+        $this->setChecked($value);
     } // end func setValue
 
     // }}}
@@ -228,7 +223,7 @@ class HTML_QuickForm_checkbox extends HTML_QuickForm_input
      * @access    public
      * @return    void
      */
-    function onQuickFormEvent($event, $arg, &$caller)
+    function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'updateValue':
@@ -263,7 +258,7 @@ class HTML_QuickForm_checkbox extends HTML_QuickForm_input
    /**
     * Return true if the checkbox is checked, null if it is not checked (getValue() returns false)
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         $value = $this->_findValue($submitValues);
         if (null === $value) {
@@ -274,4 +269,3 @@ class HTML_QuickForm_checkbox extends HTML_QuickForm_input
     
     // }}}
 } //end class HTML_QuickForm_checkbox
-?>

@@ -23,11 +23,6 @@
  */
 
 /**
- * Base class for form elements
- */ 
-require_once 'HTML/QuickForm/element.php';
-
-/**
  * HTML class for a textarea type field
  * 
  * @category    HTML
@@ -47,7 +42,7 @@ class HTML_QuickForm_textarea extends HTML_QuickForm_element
      * @since     1.0
      * @access    private
      */
-    var $_value = null;
+    protected $_value = null;
 
     // }}}
     // {{{ constructor
@@ -62,9 +57,9 @@ class HTML_QuickForm_textarea extends HTML_QuickForm_element
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_textarea($elementName=null, $elementLabel=null, $attributes=null)
+    function __construct($elementName=null, $elementLabel=null, $attributes=null)
     {
-        HTML_QuickForm_element::HTML_QuickForm_element($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         $this->_type = 'textarea';
     } //end constructor
@@ -226,4 +221,4 @@ class HTML_QuickForm_textarea extends HTML_QuickForm_element
     // }}}
 
 } //end class HTML_QuickForm_textarea
-?>
+

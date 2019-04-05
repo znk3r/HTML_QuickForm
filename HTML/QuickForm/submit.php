@@ -23,11 +23,6 @@
  */
 
 /**
- * Base class for <input /> form elements
- */
-require_once 'HTML/QuickForm/input.php';
-
-/**
  * HTML class for a submit type element
  * 
  * @category    HTML
@@ -51,9 +46,9 @@ class HTML_QuickForm_submit extends HTML_QuickForm_input
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_submit($elementName=null, $value=null, $attributes=null)
+    function __construct($elementName=null, $value=null, $attributes=null)
     {
-        HTML_QuickForm_input::HTML_QuickForm_input($elementName, null, $attributes);
+        parent::__construct($elementName, null, $attributes);
         $this->setValue($value);
         $this->setType('submit');
     } //end constructor
@@ -86,4 +81,4 @@ class HTML_QuickForm_submit extends HTML_QuickForm_input
 
     // }}}
 } //end class HTML_QuickForm_submit
-?>
+

@@ -22,11 +22,6 @@
  */
 
 /**
- * Abstract base class for QuickForm validation rules 
- */
-require_once 'HTML/QuickForm/Rule.php';
-
-/**
  * Validates values using callback functions or methods
  *
  * @category    HTML
@@ -47,7 +42,7 @@ class HTML_QuickForm_Rule_Callback extends HTML_QuickForm_Rule
      * @var     array
      * @access  private
      */
-    var $_data = array();
+    protected $_data = array();
 
    /**
     * Whether to use BC mode for specific rules
@@ -59,7 +54,7 @@ class HTML_QuickForm_Rule_Callback extends HTML_QuickForm_Rule
     * @var array
     * @access private
     */
-    var $_BCMode = array();
+    protected $_BCMode = array();
 
     /**
      * Validates a value using a callback
@@ -121,4 +116,3 @@ class HTML_QuickForm_Rule_Callback extends HTML_QuickForm_Rule
     } // end func getValidationScript
 
 } // end class HTML_QuickForm_Rule_Callback
-?>

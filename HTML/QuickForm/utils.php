@@ -45,7 +45,7 @@ class HTML_QuickForm_utils
      * @access  public
      * @static
      */
-    function pathGet($values, $path, $default = NULL) {
+    static public function pathGet($values, $path, $default = NULL) {
         foreach ($path as $key) {
             if (!is_array($values) || !isset($values[$key])) {
                 return $default;
@@ -68,7 +68,7 @@ class HTML_QuickForm_utils
      * @access  public
      * @static
      */
-    function pathIsset($values, $path) {
+    static public function pathIsset($values, $path) {
         foreach ($path as $key) {
             if (!is_array($values) || !isset($values[$key])) {
                 return FALSE;
@@ -89,7 +89,7 @@ class HTML_QuickForm_utils
      * @access  public
      * @static
      */
-    function pathSet(&$values, $pathParts, $value) {
+    static public function pathSet(&$values, $pathParts, $value) {
         $r = &$values;
         $last = array_pop($pathParts);
         foreach ($pathParts as $part) {
@@ -114,7 +114,7 @@ class HTML_QuickForm_utils
      * @access  public
      * @static
      */
-    function recursiveIsset($array, $path) {
+    static public function recursiveIsset($array, $path) {
         return self::pathIsset($array, $path);
     }
 
@@ -133,7 +133,7 @@ class HTML_QuickForm_utils
      * @access  public
      * @static
      */
-    function recursiveValue($array, $path, $default = NULL) {
+    static public function recursiveValue($array, $path, $default = NULL) {
         return self::pathGet($array, $path, $default);
     }
 
@@ -151,9 +151,8 @@ class HTML_QuickForm_utils
      * @access  public
      * @static
      */
-    function recursiveBuild($path, $value, $source = array()) {
+    static public function recursiveBuild($path, $value, $source = array()) {
         self::pathSet($source, $path, $value);
         return $source;
     }
 }
-?>

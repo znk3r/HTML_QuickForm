@@ -24,15 +24,6 @@
  */
 
 /**
- * Base class for all HTML classes
- */
-require_once 'HTML/Common.php';
-/**
- * Static utility methods
- */
-require_once 'HTML/QuickForm/utils.php';
-
-/**
  * Base class for form elements
  *
  * @category    HTML
@@ -44,7 +35,7 @@ require_once 'HTML/QuickForm/utils.php';
  * @since       1.0
  * @abstract
  */
-class HTML_QuickForm_element extends HTML_Common
+abstract class HTML_QuickForm_element extends HTML_Common
 {
     // {{{ properties
 
@@ -54,7 +45,7 @@ class HTML_QuickForm_element extends HTML_Common
      * @since     1.3
      * @access    private
      */
-    var $_label = '';
+    protected $_label = '';
 
     /**
      * Form element type
@@ -62,7 +53,7 @@ class HTML_QuickForm_element extends HTML_Common
      * @since     1.0
      * @access    private
      */
-    var $_type = '';
+    protected $_type = '';
 
     /**
      * Flag to tell if element is frozen
@@ -70,7 +61,7 @@ class HTML_QuickForm_element extends HTML_Common
      * @since     1.0
      * @access    private
      */
-    var $_flagFrozen = false;
+    protected $_flagFrozen = false;
 
     /**
      * Does the element support persistant data when frozen
@@ -78,7 +69,7 @@ class HTML_QuickForm_element extends HTML_Common
      * @since     1.3
      * @access    private
      */
-    var $_persistantFreeze = false;
+    protected $_persistantFreeze = false;
 
     // }}}
     // {{{ constructor
@@ -93,9 +84,9 @@ class HTML_QuickForm_element extends HTML_Common
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_element($elementName=null, $elementLabel=null, $attributes=null)
+    function __construct($elementName=null, $elementLabel=null, $attributes=null)
     {
-        HTML_Common::HTML_Common($attributes);
+        parent::__construct($attributes);
         if (isset($elementName)) {
             $this->setName($elementName);
         }
@@ -356,9 +347,9 @@ class HTML_QuickForm_element extends HTML_Common
             $arrayKeys = explode("']['", $keys);
             return HTML_QuickForm_utils::recursiveValue($values, $arrayKeys);
 
-        } else {
-            return null;
         }
+        return null;
+
     } //end func _findValue
 
     // }}}
@@ -372,14 +363,14 @@ class HTML_QuickForm_element extends HTML_Common
      * @param     object    $caller calling object
      * @since     1.0
      * @access    public
-     * @return    void
+     * @return    bool
      */
     function onQuickFormEvent($event, $arg, $caller)
     {
         switch ($event) {
             case 'createElement':
-                $className = get_class($this);
-                $this->$className($arg[0], $arg[1], $arg[2], $arg[3], $arg[4]);
+                // TODO : Why the constructor is called after the creation of object ?
+                $this->__construct($arg[0], $arg[1], $arg[2]);
                 break;
             case 'addElement':
                 $this->onQuickFormEvent('createElement', $arg, $caller);
@@ -498,4 +489,4 @@ class HTML_QuickForm_element extends HTML_Common
 
     // }}}
 } // end class HTML_QuickForm_element
-?>
+

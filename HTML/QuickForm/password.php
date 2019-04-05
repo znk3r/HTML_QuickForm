@@ -23,11 +23,6 @@
  */
 
 /**
- * Base class for <input /> form elements
- */
-require_once 'HTML/QuickForm/input.php';
-
-/**
  * HTML class for a password type field
  * 
  * @category    HTML
@@ -53,9 +48,9 @@ class HTML_QuickForm_password extends HTML_QuickForm_input
      * @return    void
      * @throws    
      */
-    function HTML_QuickForm_password($elementName=null, $elementLabel=null, $attributes=null)
+    function __construct($elementName=null, $elementLabel=null, $attributes=null)
     {
-        HTML_QuickForm_input::HTML_QuickForm_input($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->setType('password');
     } //end constructor
     
@@ -112,4 +107,4 @@ class HTML_QuickForm_password extends HTML_QuickForm_input
     // }}}
 
 } //end class HTML_QuickForm_password
-?>
+

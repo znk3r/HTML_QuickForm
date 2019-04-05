@@ -22,11 +22,6 @@
  */
 
 /**
- * A concrete renderer for HTML_QuickForm, makes an object from form contents
- */ 
-require_once 'HTML/QuickForm/Renderer/Object.php';
-
-/**
  * QuickForm renderer for Flexy template engine, static version.
  * 
  * A static renderer for HTML_Quickform.  Makes a QuickFormFlexyObject
@@ -62,40 +57,40 @@ class HTML_QuickForm_Renderer_ObjectFlexy extends HTML_QuickForm_Renderer_Object
      * HTML_Template_Flexy instance
      * @var object $_flexy
      */
-    var $_flexy;
+    protected $_flexy;
 
     /**
      * Current element index
      * @var integer $_elementIdx
      */
-    var $_elementIdx;
+    protected $_elementIdx;
 
     /**
      * The current element index inside a group
      * @var integer $_groupElementIdx
      */
-    var $_groupElementIdx = 0;
+    protected $_groupElementIdx = 0;
 
     /**
      * Name of template file for form html
      * @var string $_html
      * @see     setRequiredTemplate()
      */
-    var $_html = '';
+    protected $_html = '';
 
     /**
      * Name of template file for form labels
      * @var string $label
      * @see        setErrorTemplate()
      */
-    var $label = '';
+    protected $_label = '';
 
     /**
      * Class of the element objects, so you can add your own
      * element methods
      * @var string $_elementType
      */
-    var $_elementType = 'QuickformFlexyElement';
+    protected $_elementType = 'QuickformFlexyElement';
    /**#@-*/
 
     /**
@@ -104,9 +99,9 @@ class HTML_QuickForm_Renderer_ObjectFlexy extends HTML_QuickForm_Renderer_Object
      * @param HTML_Template_Flexy   template object to use
      * @public
      */
-    function HTML_QuickForm_Renderer_ObjectFlexy($flexy)
+    function __construct($flexy)
     {
-        $this->HTML_QuickForm_Renderer_Object(true);
+        parent::__construct(true);
         $this->_obj = new QuickformFlexyForm();
         $this->_flexy = $flexy;
     } // end constructor
@@ -288,4 +283,4 @@ class QuickformFlexyForm extends QuickformForm
 class QuickformFlexyElement extends QuickformElement
 {
 }
-?>
+

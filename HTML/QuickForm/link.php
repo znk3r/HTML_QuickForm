@@ -23,11 +23,6 @@
  */
 
 /**
- * HTML class for static data
- */ 
-require_once 'HTML/QuickForm/static.php';
-
-/**
  * HTML class for a link type field
  * 
  * @category    HTML
@@ -47,7 +42,7 @@ class HTML_QuickForm_link extends HTML_QuickForm_static
      * @since     1.0
      * @access    private
      */
-    var $_text = "";
+    protected $_text = "";
 
     // }}}
     // {{{ constructor
@@ -65,9 +60,9 @@ class HTML_QuickForm_link extends HTML_QuickForm_static
      * @return    void
      * @throws    
      */
-    function HTML_QuickForm_link($elementName=null, $elementLabel=null, $href=null, $text=null, $attributes=null)
+    function __construct($elementName=null, $elementLabel=null, $href=null, $text=null, $attributes=null)
     {
-        HTML_QuickForm_element::HTML_QuickForm_element($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = false;
         $this->_type = 'link';
         $this->setHref($href);
@@ -197,4 +192,4 @@ class HTML_QuickForm_link extends HTML_QuickForm_static
     // }}}
 
 } //end class HTML_QuickForm_textarea
-?>
+

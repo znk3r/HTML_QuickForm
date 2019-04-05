@@ -22,11 +22,6 @@
  */
 
 /**
- * An abstract base class for QuickForm renderers
- */
-require_once 'HTML/QuickForm/Renderer.php';
-
-/**
  * A concrete renderer for HTML_QuickForm, makes an object from form contents
  *
  * Based on HTML_Quickform_Renderer_Array code
@@ -46,43 +41,49 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
      * The object being generated
      * @var QuickformForm
      */
-    var $_obj= null;
+    protected $_obj= null;
 
     /**
      * Number of sections in the form (i.e. number of headers in it)
      * @var integer $_sectionCount
      */
-    var $_sectionCount;
+    protected $_sectionCount;
 
     /**
     * Current section number
     * @var integer $_currentSection
     */
-    var $_currentSection;
+    protected $_currentSection;
 
     /**
     * Object representing current group
     * @var object $_currentGroup
     */
-    var $_currentGroup = null;
+    protected $_currentGroup = null;
 
     /**
      * Class of Element Objects
      * @var object $_elementType
      */
-    var $_elementType = 'QuickFormElement';
+    protected $_elementType = 'QuickFormElement';
 
     /**
     * Additional style information for different elements  
     * @var array $_elementStyles
     */
-    var $_elementStyles = array();
+    protected $_elementStyles = array();
 
     /**
     * true: collect all hidden elements into string; false: process them as usual form elements
     * @var bool $_collectHidden
     */
-    var $_collectHidden = false;
+    protected $_collectHidden = false;
+
+    /**
+     * Current element index
+     * @var integer
+     */
+    protected $_elementIdx = 0;
    /**#@-*/
 
 
@@ -92,9 +93,9 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
      * @param bool    true: collect all hidden elements
      * @access public
      */
-    function HTML_QuickForm_Renderer_Object($collecthidden = false) 
+    function __construct($collecthidden = false)
     {
-        $this->HTML_QuickForm_Renderer();
+        parent::__construct();
         $this->_collectHidden = $collecthidden;
         $this->_obj = new QuickformForm;
     }
@@ -124,7 +125,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
         $this->_obj->javascript = $form->getValidationScript();
         $this->_obj->attributes = $form->getAttributes(true);
         $this->_obj->requirednote = $form->getRequiredNote();
-        $this->_obj->errors = new StdClass;
+        $this->_obj->errors = new stdClass;
 
         if($this->_collectHidden) {
             $this->_obj->hidden = '';
@@ -136,7 +137,7 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
 
     function renderHeader($header)
     {
-        $hobj = new StdClass;
+        $hobj = new stdClass;
         $hobj->header = $header->toHtml();
         $this->_obj->sections[$this->_sectionCount] = $hobj;
         $this->_currentSection = $this->_sectionCount++;
@@ -279,39 +280,39 @@ class QuickformForm
     * Whether the form has been frozen
     * @var boolean $frozen
     */
-    var $frozen;
+    public $frozen;
 
    /**
     * Javascript for client-side validation
     * @var string $javascript
     */
-    var $javascript;
+    public $javascript;
 
    /**
     * Attributes for form tag
     * @var string $attributes
     */
-    var $attributes;
+    public $attributes;
 
    /**
     * Note about required elements
     * @var string $requirednote
     */
-    var $requirednote;
+    public $requirednote;
 
    /**
     * Collected html of all hidden variables
     * @var string $hidden
     */
-    var $hidden;
+    public $hidden;
 
    /**
     * Set if there were validation errors.  
-    * StdClass object with element names for keys and their
+    * stdClass object with element names for keys and their
     * error messages as values
     * @var object $errors
     */
-    var $errors;
+    public $errors;
 
    /**
     * Array of QuickformElementObject elements.  If there are headers in the form
@@ -319,13 +320,13 @@ class QuickformForm
     * separate sections
     * @var array $elements
     */
-    var $elements;
+    public $elements;
 
    /**
     * Array of sections contained in the document
     * @var array $sections
     */
-    var $sections;
+    public $sections;
 
    /**
     * Output &lt;form&gt; header
@@ -368,67 +369,67 @@ class QuickformElement
      * Element name
      * @var string $name
      */
-    var $name;
+    protected $name;
 
     /**
      * Element value
      * @var mixed $value
      */
-    var $value;
+    protected $value;
 
     /**
      * Type of element
      * @var string $type
      */
-    var $type;
+    protected $type;
 
     /**
      * Whether the element is frozen
      * @var boolean $frozen
      */
-    var $frozen;
+    protected $frozen;
 
     /**
      * Label for the element
      * @var string $label
      */
-    var $label;
+    protected $label;
 
     /**
      * Whether element is required
      * @var boolean $required
      */
-    var $required;
+    protected $required;
 
     /**
      * Error associated with the element
      * @var string $error
      */
-    var $error;
+    protected $error;
 
     /**
      * Some information about element style
      * @var string $style
      */
-    var $style;
+    protected $style;
 
     /**
      * HTML for the element
      * @var string $html
      */
-    var $html;
+    protected $html;
 
     /**
      * If element is a group, the group separator
      * @var mixed $separator
      */
-    var $separator;
+    protected $separator;
 
     /**
      * If element is a group, an array of subelements
      * @var array $elements
      */
-    var $elements;
+    protected $elements;
 
     function isType($type)
     {
@@ -458,4 +459,4 @@ class QuickformElement
         return $ret;
     }
 } // end class QuickformElement
-?>
+

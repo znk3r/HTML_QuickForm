@@ -22,11 +22,6 @@
  */
 
 /**
- * HTML class for static data
- */
-require_once 'HTML/QuickForm/static.php';
-
-/**
  * A pseudo-element used for adding raw HTML to form
  * 
  * Intended for use with the default renderer only, template-based
@@ -50,9 +45,9 @@ class HTML_QuickForm_html extends HTML_QuickForm_static
     * @access public
     * @return void
     */
-    function HTML_QuickForm_html($text = null)
+    function __construct($text = null)
     {
-        $this->HTML_QuickForm_static(null, null, $text);
+        parent::__construct(null, null, $text);
         $this->_type = 'html';
     }
 
@@ -76,4 +71,4 @@ class HTML_QuickForm_html extends HTML_QuickForm_static
     // }}}
 
 } //end class HTML_QuickForm_html
-?>
+

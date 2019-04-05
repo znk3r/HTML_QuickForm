@@ -18,8 +18,6 @@
 //
 // $Id$
 
-require_once 'HTML/QuickForm/Renderer/Array.php';
-
 /**
  * A concrete renderer for HTML_QuickForm, makes an array of form contents
  * suitable to be used with Savant template engine.
@@ -93,19 +91,19 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     * A separator for group elements
     * @var mixed
     */
-    var $_groupSeparator = null;
+    protected $_groupSeparator = null;
 
    /**
     * The current element index inside a group
     * @var integer
     */
-    var $_groupElementIdx = 0;
+    protected $_groupElementIdx = 0;
 
    /**
     * The number of elements in the current group
     * @var integer
     */
-    var $_groupElementCount = 0;
+    protected $_groupElementCount = 0;
 
    /**
     * Constructor
@@ -113,9 +111,9 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
     * @param  bool    true: collect all hidden elements into string; false: process them as usual form elements
     * @access public
     */
-    function HTML_QuickForm_Renderer_SavantDynamic($collectHidden = false)
+    function __construct($collectHidden = false)
     {
-        parent::HTML_QuickForm_Renderer_Array($collectHidden);
+        parent::__construct($collectHidden);
     } // end constructor
 
 
@@ -225,4 +223,4 @@ class HTML_QuickForm_Renderer_SavantDynamic extends HTML_QuickForm_Renderer_Arra
         return $ret;
     }
 }
-?>
+

@@ -55,7 +55,7 @@
   },
   "autoload": {
     "classmap": [
-      "./HTML"
+      "HTML/"
     ]
   },
   "support": {

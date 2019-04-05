@@ -22,11 +22,6 @@
  */
 
 /**
- * A concrete renderer for HTML_QuickForm, based on QuickForm 2.x built-in one
- */ 
-require_once 'HTML/QuickForm/Renderer/Default.php';
-
-/**
  * A renderer that makes it quick and easy to create customized forms.
  *
  * This renderer has three main distinctives: an easy way to create
@@ -48,7 +43,7 @@ class HTML_QuickForm_Renderer_QuickHtml extends HTML_QuickForm_Renderer_Default 
      * The array of rendered elements
      * @var array
      */
-    var $renderedElements = array();
+    protected $renderedElements = array();
 
     // }}}
     // {{{ constructor
@@ -59,9 +54,9 @@ class HTML_QuickForm_Renderer_QuickHtml extends HTML_QuickForm_Renderer_Default 
      * @access public
      * @return void
      */
-    function HTML_QuickForm_Renderer_QuickHtml()
+    function __construct()
     {
-        $this->HTML_QuickForm_Renderer_Default();
+        parent::__construct();
         // The default templates aren't used for this renderer
         $this->clearAllTemplates();
     } // end constructor
@@ -210,4 +205,4 @@ class HTML_QuickForm_Renderer_QuickHtml extends HTML_QuickForm_Renderer_Default 
 
     // }}}
 } // end class HTML_QuickForm_Renderer_QuickHtml
-?>
+

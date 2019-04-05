@@ -24,11 +24,6 @@
  */
 
 /**
- * Base class for form elements
- */ 
-require_once 'HTML/QuickForm/element.php';
-
-/**
  * Class to dynamically create an HTML SELECT
  *
  * @category    HTML
@@ -50,7 +45,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @since     1.0
      * @access    private
      */
-    var $_options = array();
+    protected $_options = array();
     
     /**
      * Default values of the SELECT
@@ -59,7 +54,7 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @since     1.0
      * @access    private
      */
-    var $_values = null;
+    protected $_values = null;
 
     // }}}
     // {{{ constructor
@@ -75,9 +70,9 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_select($elementName=null, $elementLabel=null, $options=null, $attributes=null)
+    function __construct($elementName=null, $elementLabel=null, $options=null, $attributes=null)
     {
-        HTML_QuickForm_element::HTML_QuickForm_element($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         $this->_type = 'select';
         if (isset($options)) {
@@ -396,13 +391,12 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
      * @param     mixed     $values     (optional) Array or comma delimited string of selected values
      * @since     1.1
      * @access    public
-     * @return    void
+     * @return    bool
      * @throws    PEAR_Error
      */
     function loadQuery($conn, $sql, $textCol=null, $valueCol=null, $values=null)
     {
         if (is_string($conn)) {
-            require_once('DB.php');
             $dbConn = DB::connect($conn, true);
             if (DB::isError($dbConn)) {
                 return $dbConn;
@@ -611,4 +605,4 @@ class HTML_QuickForm_select extends HTML_QuickForm_element {
 
     // }}}
 } //end class HTML_QuickForm_select
-?>
+

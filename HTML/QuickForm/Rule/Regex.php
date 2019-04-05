@@ -22,11 +22,6 @@
  */
 
 /**
- * Abstract base class for QuickForm validation rules 
- */
-require_once 'HTML/QuickForm/Rule.php';
-
-/**
  * Validates values using regular expressions
  *
  * @category    HTML
@@ -46,7 +41,7 @@ class HTML_QuickForm_Rule_Regex extends HTML_QuickForm_Rule
      * @var     array
      * @access  private
      */
-    var $_data = array(
+    protected $_data = array(
                     'lettersonly'   => '/^[a-zA-Z]+$/',
                     'alphanumeric'  => '/^[a-zA-Z0-9]+$/',
                     'numeric'       => '/(^-?\d\d*\.\d*$)|(^-?\d\d*$)|(^-?\.\d\d*$)/',
@@ -104,4 +99,3 @@ class HTML_QuickForm_Rule_Regex extends HTML_QuickForm_Rule
     } // end func getValidationScript
 
 } // end class HTML_QuickForm_Rule_Regex
-?>

@@ -23,11 +23,6 @@
  */
 
 /**
- * HTML class for a checkbox type field
- */
-require_once 'HTML/QuickForm/checkbox.php';
-
-/**
  * HTML class for an advanced checkbox type field
  *
  * Basically this fixes a problem that HTML has had
@@ -59,7 +54,7 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
      * @var array
      * @access private
      */
-    var $_values = null;
+    protected $_values = null;
 
     /**
      * The default value
@@ -67,7 +62,7 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
      * @var boolean
      * @access private
      */
-    var $_currentValue = null;
+    protected $_currentValue = null;
 
     // }}}
     // {{{ constructor
@@ -86,9 +81,9 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_advcheckbox($elementName=null, $elementLabel=null, $text=null, $attributes=null, $values=null)
+    public function __construct($elementName=null, $elementLabel=null, $text=null, $attributes=null, $values=null)
     {
-        $this->HTML_QuickForm_checkbox($elementName, $elementLabel, $text, $attributes);
+        parent::__construct($elementName, $elementLabel, $text, $attributes);
         $this->setValues($values);
     } //end constructor
     
@@ -271,7 +266,7 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
     * This element has a value even if it is not checked, thus we override
     * checkbox's behaviour here
     */
-    function exportValue(&$submitValues, $assoc = false)
+    function exportValue($submitValues, $assoc = false)
     {
         $value = $this->_findValue($submitValues);
         if (null === $value) {
@@ -283,4 +278,4 @@ class HTML_QuickForm_advcheckbox extends HTML_QuickForm_checkbox
     }
     // }}}
 } //end class HTML_QuickForm_advcheckbox
-?>
+

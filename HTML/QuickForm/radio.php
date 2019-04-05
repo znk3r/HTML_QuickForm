@@ -23,11 +23,6 @@
  */
 
 /**
- * Base class for <input /> form elements
- */
-require_once 'HTML/QuickForm/input.php';
-
-/**
  * HTML class for a radio type element
  * 
  * @category    HTML
@@ -47,7 +42,7 @@ class HTML_QuickForm_radio extends HTML_QuickForm_input
      * @since     1.1
      * @access    private
      */
-    var $_text = '';
+    protected $_text = '';
 
     // }}}
     // {{{ constructor
@@ -64,9 +59,9 @@ class HTML_QuickForm_radio extends HTML_QuickForm_input
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_radio($elementName=null, $elementLabel=null, $text=null, $value=null, $attributes=null)
+    public function __construct($elementName=null, $elementLabel=null, $text=null, $value=null, $attributes=null)
     {
-        $this->HTML_QuickForm_element($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         if (isset($value)) {
             $this->setValue($value);
         }
@@ -248,4 +243,4 @@ class HTML_QuickForm_radio extends HTML_QuickForm_input
     
     // }}}
 } //end class HTML_QuickForm_radio
-?>
+

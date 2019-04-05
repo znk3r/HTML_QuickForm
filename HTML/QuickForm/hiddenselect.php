@@ -22,11 +22,6 @@
  */
 
 /**
- * Class for <select></select> elements
- */
-require_once 'HTML/QuickForm/select.php';
-
-/**
  * Hidden select pseudo-element
  *
  * This class takes the same arguments as a select element, but instead
@@ -56,9 +51,9 @@ class HTML_QuickForm_hiddenselect extends HTML_QuickForm_select
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_hiddenselect($elementName=null, $elementLabel=null, $options=null, $attributes=null)
+    function __construct($elementName=null, $elementLabel=null, $options=null, $attributes=null)
     {
-        HTML_QuickForm_element::HTML_QuickForm_element($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         $this->_type = 'hiddenselect';
         if (isset($options)) {
@@ -119,4 +114,4 @@ class HTML_QuickForm_hiddenselect extends HTML_QuickForm_select
 
     // }}}
 } //end class HTML_QuickForm_hiddenselect
-?>
+

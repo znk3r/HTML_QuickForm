@@ -24,19 +24,6 @@
  */
 
 /**
- * Class for a group of form elements
- */
-require_once 'HTML/QuickForm/group.php';
-/**
- * Class for <select></select> elements
- */
-require_once 'HTML/QuickForm/select.php';
-/**
- * Static utility methods
- */
-require_once 'HTML/QuickForm/utils.php';
-
-/**
  * Hierarchical select element
  *
  * Class to dynamically create two or more HTML Select elements
@@ -63,7 +50,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * @var       array
      * @access    private
      */
-    var $_options = array();
+    protected $_options = array();
 
     /**
      * Number of select elements on this group
@@ -71,7 +58,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * @var       int
      * @access    private
      */
-    var $_nbElements = 0;
+    protected $_nbElements = 0;
 
     /**
      * The javascript used to set and change the options
@@ -79,7 +66,7 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * @var       string
      * @access    private
      */
-    var $_js = '';
+    protected $_js = '';
 
     // }}}
     // {{{ constructor
@@ -96,9 +83,9 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_hierselect($elementName=null, $elementLabel=null, $attributes=null, $separator=null)
+    function __construct($elementName=null, $elementLabel=null, $attributes=null, $separator=null)
     {
-        $this->HTML_QuickForm_element($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         if (isset($separator)) {
             $this->_separator = $separator;
@@ -471,7 +458,6 @@ JAVASCRIPT;
             $this->_js .= "_hs_defaults['" . $this->_escapeString($this->getName()) . "'] = " .
                           $this->_convertArrayToJavascript($values) . ";\n";
         }
-        include_once('HTML/QuickForm/Renderer/Default.php');
         $renderer = new HTML_QuickForm_Renderer_Default();
         $renderer->setElementTemplate('{element}');
         parent::accept($renderer);
@@ -647,4 +633,4 @@ JAVASCRIPT;
 
     // }}}
 } // end class HTML_QuickForm_hierselect
-?>
+
