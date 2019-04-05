@@ -567,10 +567,13 @@ class HTML_QuickForm extends HTML_Common
      * @return    HTML_QuickForm_Element
      * @throws    HTML_QuickForm_Error
      */
-    function createElement($elementType)
+    public function createElement()
     {
         $args    =  func_get_args();
-        $element = HTML_QuickForm::_loadElement('createElement', $elementType, array_slice($args, 1));
+        if (!is_string($args[0])) {
+            throw new InvalidArgumentException('The first argument must be a string for type of element do create.');
+        }
+        $element = $this->_loadElement('createElement', $args[0], array_slice($args, 1));
         return $element;
     } // end func createElement
 
@@ -580,9 +583,11 @@ class HTML_QuickForm extends HTML_Common
     /**
      * Returns a form element of the given type
      *
-     * @param     string   $event   event to send to newly created element ('createElement' or 'addElement')
-     * @param     string   $type    element type
-     * @param     array    $args    arguments for event
+     * @param string $event event to send to newly created element ('createElement' or 'addElement')
+     * @param string $type element type
+     * @param array $args arguments for event
+     * @param object|null $caller
+     * @return    HTML_QuickForm_Element
      * @since     2.0
      * @access    private
      * @return    HTML_QuickForm_Element
@@ -597,6 +602,11 @@ class HTML_QuickForm extends HTML_Common
         }
         $className = $GLOBALS['HTML_QUICKFORM_ELEMENT_TYPES'][$type];
         //include_once($includeFile);
+        include_once($includeFile);
+        //include_once($includeFile);
+        /**
+         * @var HTML_QuickForm_element $elementObject
+         */
         $elementObject = new $className();
         for ($i = 0; $i < 5; $i++) {
             if (!isset($args[$i])) {
