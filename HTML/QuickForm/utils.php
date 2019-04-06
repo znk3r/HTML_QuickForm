@@ -1,8 +1,7 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * utility functions
+ * utility functions.
  *
  * PHP versions 4 and 5
  *
@@ -12,13 +11,11 @@
  * the PHP License and are unable to obtain it through the web, please
  * send a note to license@php.net so we can mail you a copy immediately.
  *
- * @category    HTML
- * @package     HTML_QuickForm
- * @author      Chuck Burgess <ashnazg@php.net>
- * @copyright   2001-2018 The PHP Group
- * @license     http://www.php.net/license/3_01.txt PHP License 3.01
- * @version     CVS: $Id$
- * @link        http://pear.php.net/package/HTML_QuickForm
+ * @author Chuck Burgess <ashnazg@php.net>
+ * @copyright 2001-2018 The PHP Group
+ * @license http://www.php.net/license/3_01.txt PHP License 3.01
+ *
+ * @see http://pear.php.net/package/HTML_QuickForm
  */
 
 /**
@@ -26,32 +23,28 @@
  *
  * (courtesy of CiviCRM project (https://civicrm.org/)
  *
- * @category    HTML
- * @package     HTML_QuickForm
- * @author      Chuck Burgess <ashnazg@php.net>
- * @version     Release: @package_version@
- * @since       3.2
+ * @author Chuck Burgess <ashnazg@php.net>
  */
 class HTML_QuickForm_utils
 {
     /**
      * Get a single value from an array-tree.
      *
-     * @param   array     $values   Ex: ['foo' => ['bar' => 123]].
-     * @param   array     $path     Ex: ['foo', 'bar'].
-     * @param   mixed     $default
-     * @return  mixed               Ex 123.
+     * @param array $values ex: ['foo' => ['bar' => 123]]
+     * @param array $path ex: ['foo', 'bar']
+     * @param mixed $default
      *
-     * @access  public
-     * @static
+     * @return mixed ex 123
      */
-    function pathGet($values, $path, $default = NULL) {
+    public static function pathGet($values, $path, $default = null)
+    {
         foreach ($path as $key) {
             if (!is_array($values) || !isset($values[$key])) {
                 return $default;
             }
             $values = $values[$key];
         }
+
         return $values;
     }
 
@@ -61,35 +54,32 @@ class HTML_QuickForm_utils
      * This is a helper for when the calling function does not know how many layers deep
      * the path array is so cannot easily check.
      *
-     * @param   array $values
-     * @param   array $path
-     * @return  bool
+     * @param array $values
+     * @param array $path
      *
-     * @access  public
-     * @static
+     * @return bool
      */
-    function pathIsset($values, $path) {
+    public static function pathIsset($values, $path)
+    {
         foreach ($path as $key) {
             if (!is_array($values) || !isset($values[$key])) {
-                return FALSE;
+                return false;
             }
             $values = $values[$key];
         }
-        return TRUE;
+
+        return true;
     }
 
     /**
      * Set a single value in an array tree.
      *
-     * @param   array   $values     Ex: ['foo' => ['bar' => 123]].
-     * @param   array   $pathParts  Ex: ['foo', 'bar'].
-     * @param   mixed   $value      Ex: 456.
-     * @return  void
-     *
-     * @access  public
-     * @static
+     * @param array $values ex: ['foo' => ['bar' => 123]]
+     * @param array $pathParts ex: ['foo', 'bar']
+     * @param mixed $value ex: 456
      */
-    function pathSet(&$values, $pathParts, $value) {
+    public static function pathSet(&$values, $pathParts, $value)
+    {
         $r = &$values;
         $last = array_pop($pathParts);
         foreach ($pathParts as $part) {
@@ -107,15 +97,14 @@ class HTML_QuickForm_utils
      * This is a helper for when the calling function does not know how many layers deep the
      * path array is so cannot easily check.
      *
-     * @param   array $array
-     * @param   array $path
-     * @return  bool
+     * @param array $array
+     * @param array $path
      *
-     * @access  public
-     * @static
+     * @return bool
      */
-    function recursiveIsset($array, $path) {
-        return self::pathIsset($array, $path);
+    public static function recursiveIsset($array, $path)
+    {
+        return static::pathIsset($array, $path);
     }
 
     /**
@@ -124,17 +113,16 @@ class HTML_QuickForm_utils
      * This is a helper for when the calling function does not know how many layers deep the
      * path array is so cannot easily check.
      *
-     * @param   array   $array
-     * @param   array   $path       An array of keys,
-     *                              e.g [0, 'bob', 8] where we want to check if $array[0]['bob'][8]
-     * @param   mixed   $default    Value to return if not found.
-     * @return  bool
+     * @param array $array
+     * @param array $path An array of keys,
+     *                    e.g [0, 'bob', 8] where we want to check if $array[0]['bob'][8]
+     * @param mixed $default value to return if not found
      *
-     * @access  public
-     * @static
+     * @return bool
      */
-    function recursiveValue($array, $path, $default = NULL) {
-        return self::pathGet($array, $path, $default);
+    public static function recursiveValue($array, $path, $default = null)
+    {
+        return static::pathGet($array, $path, $default);
     }
 
     /**
@@ -143,17 +131,16 @@ class HTML_QuickForm_utils
      * e.g if value is 'llama' & path is [0, 'email', 'location'] result will be
      * [0 => ['email' => ['location' => 'llama']]
      *
-     * @param           $path
-     * @param           $value
-     * @param   array   $source
-     * @return  array
+     * @param $path
+     * @param $value
+     * @param array $source
      *
-     * @access  public
-     * @static
+     * @return array
      */
-    function recursiveBuild($path, $value, $source = array()) {
-        self::pathSet($source, $path, $value);
+    public static function recursiveBuild($path, $value, $source = array())
+    {
+        static::pathSet($source, $path, $value);
+
         return $source;
     }
 }
-?>

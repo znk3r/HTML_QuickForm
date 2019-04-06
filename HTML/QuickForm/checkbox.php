@@ -1,9 +1,8 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * HTML class for a checkbox type field
- * 
+ * HTML class for a checkbox type field.
+ *
  * PHP versions 4 and 5
  *
  * LICENSE: This source file is subject to version 3.01 of the PHP license
@@ -12,223 +11,160 @@
  * the PHP License and are unable to obtain it through the web, please
  * send a note to license@php.net so we can mail you a copy immediately.
  *
- * @category    HTML
- * @package     HTML_QuickForm
- * @author      Adam Daniel <adaniel1@eesus.jnj.com>
- * @author      Bertrand Mansion <bmansion@mamasam.com>
- * @author      Alexey Borzov <avb@php.net>
- * @copyright   2001-2011 The PHP Group
- * @license     http://www.php.net/license/3_01.txt PHP License 3.01
- * @version     CVS: $Id$
- * @link        http://pear.php.net/package/HTML_QuickForm
+ * @author Adam Daniel <adaniel1@eesus.jnj.com>
+ * @author Bertrand Mansion <bmansion@mamasam.com>
+ * @author Alexey Borzov <avb@php.net>
+ * @copyright 2001-2011 The PHP Group
+ * @license http://www.php.net/license/3_01.txt PHP License 3.01
+ *
+ * @see http://pear.php.net/package/HTML_QuickForm
  */
 
 /**
- * Base class for <input /> form elements
+ * Base class for <input /> form elements.
  */
 require_once 'HTML/QuickForm/input.php';
 
 /**
- * HTML class for a checkbox type field
- * 
- * @category    HTML
- * @package     HTML_QuickForm
- * @author      Adam Daniel <adaniel1@eesus.jnj.com>
- * @author      Bertrand Mansion <bmansion@mamasam.com>
- * @author      Alexey Borzov <avb@php.net>
- * @version     Release: @package_version@
- * @since       1.0
+ * HTML class for a checkbox type field.
+ *
+ * @author Adam Daniel <adaniel1@eesus.jnj.com>
+ * @author Bertrand Mansion <bmansion@mamasam.com>
+ * @author Alexey Borzov <avb@php.net>
  */
 class HTML_QuickForm_checkbox extends HTML_QuickForm_input
 {
-    // {{{ properties
+    /**
+     * Checkbox display text.
+     *
+     * @var string
+     */
+    public $_text = '';
 
     /**
-     * Checkbox display text
-     * @var       string
-     * @since     1.1
-     * @access    private
+     * Class constructor.
+     *
+     * @param string $elementName (optional)Input field name attribute
+     * @param string $elementLabel (optional)Input field value
+     * @param string $text (optional)Checkbox display text
+     * @param mixed $attributes (optional)Either a typical HTML attribute string
+     *                          or an associative array
      */
-    var $_text = '';
-
-    // }}}
-    // {{{ constructor
-
-    /**
-     * Class constructor
-     * 
-     * @param     string    $elementName    (optional)Input field name attribute
-     * @param     string    $elementLabel   (optional)Input field value
-     * @param     string    $text           (optional)Checkbox display text
-     * @param     mixed     $attributes     (optional)Either a typical HTML attribute string 
-     *                                      or an associative array
-     * @since     1.0
-     * @access    public
-     * @return    void
-     */
-    function HTML_QuickForm_checkbox($elementName=null, $elementLabel=null, $text='', $attributes=null)
+    public function __construct($elementName = null, $elementLabel = null, $text = '', $attributes = null)
     {
-        HTML_QuickForm_input::HTML_QuickForm_input($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         $this->_text = $text;
         $this->setType('checkbox');
-        $this->updateAttributes(array('value'=>1));
+        $this->updateAttributes(array('value' => 1));
         $this->_generateId();
-    } //end constructor
-    
-    // }}}
-    // {{{ setChecked()
+    }
 
     /**
-     * Sets whether a checkbox is checked
-     * 
-     * @param     bool    $checked  Whether the field is checked or not
-     * @since     1.0
-     * @access    public
-     * @return    void
+     * Sets whether a checkbox is checked.
+     *
+     * @param bool $checked Whether the field is checked or not
      */
-    function setChecked($checked)
+    public function setChecked($checked)
     {
         if (!$checked) {
             $this->removeAttribute('checked');
         } else {
-            $this->updateAttributes(array('checked'=>'checked'));
+            $this->updateAttributes(array('checked' => 'checked'));
         }
-    } //end func setChecked
-
-    // }}}
-    // {{{ getChecked()
+    }
 
     /**
-     * Returns whether a checkbox is checked
-     * 
-     * @since     1.0
-     * @access    public
-     * @return    bool
+     * Returns whether a checkbox is checked.
+     *
+     * @return bool
      */
-    function getChecked()
+    public function getChecked()
     {
-        return (bool)$this->getAttribute('checked');
-    } //end func getChecked
-    
-    // }}}
-    // {{{ toHtml()
+        return (bool) $this->getAttribute('checked');
+    }
 
     /**
-     * Returns the checkbox element in HTML
-     * 
-     * @since     1.0
-     * @access    public
-     * @return    string
+     * Returns the checkbox element in HTML.
+     *
+     * @return string
      */
-    function toHtml()
+    public function toHtml()
     {
         if (0 == strlen($this->_text)) {
             $label = '';
         } elseif ($this->_flagFrozen) {
             $label = $this->_text;
         } else {
-            $label = '<label for="' . $this->getAttribute('id') . '">' . $this->_text . '</label>';
+            $label = '<label for="'.$this->getAttribute('id').'">'.$this->_text.'</label>';
         }
-        return HTML_QuickForm_input::toHtml() . $label;
-    } //end func toHtml
-    
-    // }}}
-    // {{{ getFrozenHtml()
+
+        return parent::toHtml().$label;
+    }
 
     /**
-     * Returns the value of field without HTML tags
-     * 
-     * @since     1.0
-     * @access    public
-     * @return    string
+     * Returns the value of field without HTML tags.
+     *
+     * @return string
      */
-    function getFrozenHtml()
+    public function getFrozenHtml()
     {
         if ($this->getChecked()) {
-            return '<tt>[x]</tt>' .
+            return '<tt>[x]</tt>'.
                    $this->_getPersistantData();
-        } else {
-            return '<tt>[ ]</tt>';
         }
-    } //end func getFrozenHtml
 
-    // }}}
-    // {{{ setText()
+        return '<tt>[ ]</tt>';
+    }
 
     /**
-     * Sets the checkbox text
-     * 
-     * @param     string    $text  
-     * @since     1.1
-     * @access    public
-     * @return    void
+     * Sets the checkbox text.
+     *
+     * @param string $text
      */
-    function setText($text)
+    public function setText($text)
     {
         $this->_text = $text;
-    } //end func setText
-
-    // }}}
-    // {{{ getText()
+    }
 
     /**
-     * Returns the checkbox text 
-     * 
-     * @since     1.1
-     * @access    public
-     * @return    string
+     * Returns the checkbox text.
+     *
+     * @return string
      */
-    function getText()
+    public function getText()
     {
         return $this->_text;
-    } //end func getText
-
-    // }}}
-    // {{{ setValue()
+    }
 
     /**
-     * Sets the value of the form element
+     * Sets the value of the form element.
      *
-     * @param     string    $value      Default value of the form element
-     * @since     1.0
-     * @access    public
-     * @return    void
+     * @param string $value Default value of the form element
      */
-    function setValue($value)
+    public function setValue($value)
     {
         return $this->setChecked($value);
-    } // end func setValue
-
-    // }}}
-    // {{{ getValue()
+    }
 
     /**
-     * Returns the value of the form element
+     * Returns the value of the form element.
      *
-     * @since     1.0
-     * @access    public
-     * @return    bool
+     * @return bool
      */
-    function getValue()
+    public function getValue()
     {
         return $this->getChecked();
-    } // end func getValue
-
-    // }}}
-    // {{{ onQuickFormEvent()
+    }
 
     /**
-     * Called by HTML_QuickForm whenever form event is made on this element
+     * Called by HTML_QuickForm whenever form event is made on this element.
      *
-     * @param     string    $event  Name of event
-     * @param     mixed     $arg    event arguments
-     * @param     object    &$caller calling object
-     * @since     1.0
-     * @access    public
-     * @return    void
+     * @param string $event Name of event
+     * @param mixed $arg event arguments
+     * @param object &$caller calling object
      */
-    function onQuickFormEvent($event, $arg, &$caller)
+    public function onQuickFormEvent($event, $arg, &$caller)
     {
         switch ($event) {
             case 'updateValue':
@@ -247,31 +183,33 @@ class HTML_QuickForm_checkbox extends HTML_QuickForm_input
                 if (null !== $value || $caller->isSubmitted()) {
                     $this->setChecked($value);
                 }
+
                 break;
             case 'setGroupValue':
                 $this->setChecked($arg);
+
                 break;
             default:
                 parent::onQuickFormEvent($event, $arg, $caller);
         }
+
         return true;
-    } // end func onQuickFormEvent
+    }
 
-    // }}}
-    // {{{ exportValue()
-
-   /**
-    * Return true if the checkbox is checked, null if it is not checked (getValue() returns false)
-    */
-    function exportValue(&$submitValues, $assoc = false)
+    /**
+     * Return true if the checkbox is checked, null if it is not checked (getValue() returns false).
+     *
+     * @param mixed $submitValues
+     * @param mixed $assoc
+     */
+    public function exportValue(&$submitValues, $assoc = false)
     {
         $value = $this->_findValue($submitValues);
         if (null === $value) {
-            $value = $this->getChecked()? true: null;
+            $value = $this->getChecked() ? true : null;
         }
+
         return $this->_prepareValue($value, $assoc);
     }
-    
-    // }}}
-} //end class HTML_QuickForm_checkbox
-?>
+
+}

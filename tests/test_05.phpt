@@ -11,8 +11,8 @@ if (defined('E_DEPRECATED')) {
 }
 require_once 'HTML/QuickForm.php';
 $form = new HTML_QuickForm('firstForm');
-$group[] =& HTML_QuickForm::createElement('text', 'first', 'First');
-$group[] =& HTML_QuickForm::createElement('text', 'last', 'Last');
+$group[] = &HTML_QuickForm::createElement('text', 'first', 'First');
+$group[] = &HTML_QuickForm::createElement('text', 'last', 'Last');
 $form->addGroup($group, 'name', 'Name:', ',&nbsp;');
 $form->addElement('submit');
 $form->display();

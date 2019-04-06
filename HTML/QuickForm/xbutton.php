@@ -1,9 +1,8 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Class for HTML 4.0 <button> element
- * 
+ * Class for HTML 4.0 <button> element.
+ *
  * PHP versions 4 and 5
  *
  * LICENSE: This source file is subject to version 3.01 of the PHP license
@@ -12,142 +11,127 @@
  * the PHP License and are unable to obtain it through the web, please
  * send a note to license@php.net so we can mail you a copy immediately.
  *
- * @category    HTML
- * @package     HTML_QuickForm
- * @author      Alexey Borzov <avb@php.net>
- * @copyright   2001-2011 The PHP Group
- * @license     http://www.php.net/license/3_01.txt PHP License 3.01
- * @version     CVS: $Id$
- * @link        http://pear.php.net/package/HTML_QuickForm
+ * @author Alexey Borzov <avb@php.net>
+ * @copyright 2001-2011 The PHP Group
+ * @license http://www.php.net/license/3_01.txt PHP License 3.01
+ *
+ * @see http://pear.php.net/package/HTML_QuickForm
  */
 
 /**
- * Base class for form elements
- */ 
+ * Base class for form elements.
+ */
 require_once 'HTML/QuickForm/element.php';
 
 /**
- * Class for HTML 4.0 <button> element
- * 
- * @category    HTML
- * @package     HTML_QuickForm
- * @author      Alexey Borzov <avb@php.net>
- * @version     Release: @package_version@
- * @since       3.2.3
+ * Class for HTML 4.0 <button> element.
+ *
+ * @author Alexey Borzov <avb@php.net>
  */
 class HTML_QuickForm_xbutton extends HTML_QuickForm_element
 {
-   /**
-    * Contents of the <button> tag
-    * @var      string
-    * @access   private
-    */
-    var $_content; 
+    /**
+     * Contents of the <button> tag.
+     *
+     * @var string
+     */
+    public $_content;
 
-   /**
-    * Class constructor
-    * 
-    * @param    string  Button name
-    * @param    string  Button content (HTML to add between <button></button> tags)
-    * @param    mixed   Either a typical HTML attribute string or an associative array
-    * @access   public
-    */
-    function HTML_QuickForm_xbutton($elementName = null, $elementContent = null, $attributes = null)
+    /**
+     * Class constructor.
+     *
+     * @param string $elementName Button name
+     * @param string $elementContent Button content (HTML to add between <button></button> tags)
+     * @param mixed $attributes Either a typical HTML attribute string or an associative array
+     */
+    public function __construct($elementName = null, $elementContent = null, $attributes = null)
     {
-        $this->HTML_QuickForm_element($elementName, null, $attributes);
+        parent::__construct($elementName, null, $attributes);
         $this->setContent($elementContent);
         $this->setPersistantFreeze(false);
         $this->_type = 'xbutton';
     }
 
-
-    function toHtml()
+    public function toHtml()
     {
-        return '<button' . $this->getAttributes(true) . '>' . $this->_content . '</button>';
+        return '<button'.$this->getAttributes(true).'>'.$this->_content.'</button>';
     }
 
-
-    function getFrozenHtml()
+    public function getFrozenHtml()
     {
         return $this->toHtml();
     }
 
-
-    function freeze()
+    public function freeze()
     {
         return false;
     }
 
-
-    function setName($name)
+    public function setName($name)
     {
         $this->updateAttributes(array(
-            'name' => $name 
+            'name' => $name,
         ));
     }
 
-
-    function getName()
+    public function getName()
     {
         return $this->getAttribute('name');
     }
 
-
-    function setValue($value)
+    public function setValue($value)
     {
         $this->updateAttributes(array(
-            'value' => $value
+            'value' => $value,
         ));
     }
 
-
-    function getValue()
+    public function getValue()
     {
         return $this->getAttribute('value');
     }
 
-
-   /**
-    * Sets the contents of the button element
-    *
-    * @param    string  Button content (HTML to add between <button></button> tags)
-    */
-    function setContent($content)
+    /**
+     * Sets the contents of the button element.
+     *
+     * @param string $content Button content (HTML to add between <button></button> tags)
+     */
+    public function setContent($content)
     {
         $this->_content = $content;
     }
 
-
-    function onQuickFormEvent($event, $arg, $caller)
+    public function onQuickFormEvent($event, $arg, $caller)
     {
         if ('updateValue' != $event) {
             return parent::onQuickFormEvent($event, $arg, $caller);
-        } else {
-            $value = $this->_findValue($caller->_constantValues);
-            if (null === $value) {
-                $value = $this->_findValue($caller->_defaultValues);
-            }
-            if (null !== $value) {
-                $this->setValue($value);
-            }
         }
+        $value = $this->_findValue($caller->_constantValues);
+        if (null === $value) {
+            $value = $this->_findValue($caller->_defaultValues);
+        }
+        if (null !== $value) {
+            $this->setValue($value);
+        }
+
         return true;
     }
 
-
-   /**
-    * Returns a 'safe' element's value
-    * 
-    * The value is only returned if the button's type is "submit" and if this
-    * particlular button was clicked
-    */
-    function exportValue($submitValues, $assoc = false)
+    /**
+     * Returns a 'safe' element's value.
+     *
+     * The value is only returned if the button's type is "submit" and if this
+     * particlular button was clicked
+     *
+     * @param mixed $submitValues
+     * @param mixed $assoc
+     */
+    public function exportValue($submitValues, $assoc = false)
     {
         if ('submit' == $this->getAttribute('type')) {
             return $this->_prepareValue($this->_findValue($submitValues), $assoc);
-        } else {
-            return null;
         }
+
+        return null;
     }
 }
-?>

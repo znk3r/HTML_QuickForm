@@ -10,7 +10,7 @@ if (defined('E_DEPRECATED')) {
 require_once 'HTML/QuickForm.php';
 $form = new HTML_QuickForm('firstForm');
 $form->setDefaults(array(
-    'name' => 'Joe User'
+    'name' => 'Joe User',
 ));
 $form->addElement('header', null, 'QuickForm tutorial example');
 $form->addElement('text', 'name', 'Enter your name:', array('size' => 50, 'maxlength' => 255));

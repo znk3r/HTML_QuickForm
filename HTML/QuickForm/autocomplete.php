@@ -1,8 +1,7 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * HTML class for an autocomplete element
+ * HTML class for an autocomplete element.
  *
  * PHP versions 4 and 5
  *
@@ -12,22 +11,20 @@
  * the PHP License and are unable to obtain it through the web, please
  * send a note to license@php.net so we can mail you a copy immediately.
  *
- * @category    HTML
- * @package     HTML_QuickForm
- * @author      Matteo Di Giovinazzo <matteodg@infinito.it>
- * @copyright   2001-2011 The PHP Group
- * @license     http://www.php.net/license/3_01.txt PHP License 3.01
- * @version     CVS: $Id$
- * @link        http://pear.php.net/package/HTML_QuickForm
+ * @author Matteo Di Giovinazzo <matteodg@infinito.it>
+ * @copyright 2001-2011 The PHP Group
+ * @license http://www.php.net/license/3_01.txt PHP License 3.01
+ *
+ * @see http://pear.php.net/package/HTML_QuickForm
  */
 
 /**
- * HTML class for a text field
+ * HTML class for a text field.
  */
 require_once 'HTML/QuickForm/text.php';
 
 /**
- * HTML class for an autocomplete element
+ * HTML class for an autocomplete element.
  *
  * Creates an HTML input text element that
  * at every keypressed javascript event checks in an array of options
@@ -44,94 +41,72 @@ require_once 'HTML/QuickForm/text.php';
  * $autocomplete->setOptions($options);
  * </code>
  *
- * @category    HTML
- * @package     HTML_QuickForm
- * @author      Matteo Di Giovinazzo <matteodg@infinito.it>
- * @version     Release: @package_version@
- * @since       3.2
+ * @author Matteo Di Giovinazzo <matteodg@infinito.it>
  */
 class HTML_QuickForm_autocomplete extends HTML_QuickForm_text
 {
-    // {{{ properties
+    /**
+     * Options for the autocomplete input text element.
+     *
+     * @var array
+     */
+    public $_options = array();
 
     /**
-     * Options for the autocomplete input text element
+     * "One-time" javascript (containing functions), see bug #4611.
      *
-     * @var       array
-     * @access    private
+     * @var string
      */
-    var $_options = array();
+    public $_js = '';
 
     /**
-     * "One-time" javascript (containing functions), see bug #4611
+     * Class constructor.
      *
-     * @var     string
-     * @access  private
+     * @param string $elementName (optional)Input field name attribute
+     * @param string $elementLabel (optional)Input field label in form
+     * @param array $options (optional)Autocomplete options
+     * @param mixed $attributes (optional)Either a typical HTML attribute string
+     *                          or an associative array. Date format is passed along the attributes.
      */
-    var $_js = '';
-
-    // }}}
-    // {{{ constructor
-
-    /**
-     * Class constructor
-     *
-     * @param     string    $elementName    (optional)Input field name attribute
-     * @param     string    $elementLabel   (optional)Input field label in form
-     * @param     array     $options        (optional)Autocomplete options
-     * @param     mixed     $attributes     (optional)Either a typical HTML attribute string
-     *                                      or an associative array. Date format is passed along the attributes.
-     * @access    public
-     * @return    void
-     */
-    function HTML_QuickForm_autocomplete($elementName = null, $elementLabel = null, $options = null, $attributes = null)
+    public function __construct($elementName = null, $elementLabel = null, $options = null, $attributes = null)
     {
-        $this->HTML_QuickForm_text($elementName, $elementLabel, $attributes);
+        parent::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         $this->_type = 'autocomplete';
         if (isset($options)) {
             $this->setOptions($options);
         }
-    } //end constructor
-
-    // }}}
-    // {{{ setOptions()
+    }
 
     /**
-     * Sets the options for the autocomplete input text element
+     * Sets the options for the autocomplete input text element.
      *
-     * @param     array    $options    Array of options for the autocomplete input text element
-     * @access    public
-     * @return    void
+     * @param array $options Array of options for the autocomplete input text element
      */
-    function setOptions($options)
+    public function setOptions($options)
     {
         $this->_options = array_values($options);
-    } // end func setOptions
-
-    // }}}
-    // {{{ toHtml()
+    }
 
     /**
-     * Returns Html for the autocomplete input text element
+     * Returns Html for the autocomplete input text element.
      *
-     * @access      public
-     * @return      string
+     * @return string
      */
-    function toHtml()
+    public function toHtml()
     {
         // prevent problems with grouped elements
-        $arrayName = str_replace(array('[', ']'), array('__', ''), $this->getName()) . '_values';
+        $arrayName = str_replace(array('[', ']'), array('__', ''), $this->getName()).'_values';
 
         $this->updateAttributes(array(
-            'onkeypress' => 'return window.autocomplete(this, event, ' . $arrayName . ');'
+            'onkeypress' => 'return window.autocomplete(this, event, '.$arrayName.');',
         ));
         if ($this->_flagFrozen) {
             $js = '';
         } else {
             $js = "<script type=\"text/javascript\">\n//<![CDATA[\n";
             if (!defined('HTML_QUICKFORM_AUTOCOMPLETE_EXISTS')) {
-                $this->_js .= <<<EOS
+                $this->_js .= <<<'EOS'
 
 /* begin javascript for autocomplete */
 function setSelectionRange(input, selectionStart, selectionEnd) {
@@ -235,24 +210,23 @@ EOS;
                 define('HTML_QUICKFORM_AUTOCOMPLETE_EXISTS', true);
             }
             $jsEscape = array(
-                "\r"    => '\r',
-                "\n"    => '\n',
-                "\t"    => '\t',
-                "'"     => "\\'",
-                '"'     => '\"',
-                '\\'    => '\\\\'
+                "\r" => '\r',
+                "\n" => '\n',
+                "\t" => '\t',
+                "'" => "\\'",
+                '"' => '\"',
+                '\\' => '\\\\',
             );
 
             $js .= $this->_js;
-            $js .= 'var ' . $arrayName . " = new Array();\n";
-            for ($i = 0; $i < count($this->_options); $i++) {
-                $js .= $arrayName . '[' . $i . "] = '" . strtr($this->_options[$i], $jsEscape) . "';\n";
+            $js .= 'var '.$arrayName." = new Array();\n";
+            for ($i = 0; $i < count($this->_options); ++$i) {
+                $js .= $arrayName.'['.$i."] = '".strtr($this->_options[$i], $jsEscape)."';\n";
             }
             $js .= "//]]>\n</script>";
         }
-        return $js . parent::toHtml();
-    }// end func toHtml
 
-    // }}}
-} // end class HTML_QuickForm_autocomplete
-?>
+        return $js.parent::toHtml();
+    }
+
+}
