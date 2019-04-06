@@ -43,19 +43,16 @@
     }
   ],
   "require": {
-    "php": "^7.0.0",
+    "php": ">=5.4.0",
     "pear/pear_exception": "*",
     "znk3r/html_common": "*"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "*"
   },
   "replace": {
     "pear/html_quickform": "*"
   },
   "autoload": {
     "classmap": [
-      "./HTML"
+      "HTML/"
     ]
   },
   "support": {
