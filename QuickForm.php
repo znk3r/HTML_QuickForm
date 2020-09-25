@@ -1975,8 +1975,8 @@ class HTML_QuickForm extends HTML_Common
      * Tell whether a result from a QuickForm method is an error (an instance of HTML_QuickForm_Error)
      *
      * @access public
-     * @param mixed     result code
-     * @return bool     whether $value is an error
+     * @param mixed result code
+     * @return bool whether $value is an error
      * @static
      */
     function isError($value)
@@ -2069,5 +2069,5 @@ class HTML_QuickForm_Error extends PEAR_Error {
     }
 
     // }}}
-} // end class HTML_QuickForm_Error
+} // end class HTML_QuickForm_Error 
 ?>
