@@ -124,7 +124,7 @@ define('QUICKFORM_INVALID_DATASOURCE',     -9);
  * @author      Bertrand Mansion <bmansion@mamasam.com>
  * @author      Alexey Borzov <avb@php.net>
  * @version     Release: @package_version@
- */
+ **/
 class HTML_QuickForm extends HTML_Common
 {
     // {{{ properties
